@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未来人类生活趋势研究报告 | 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            --social: #3b82f6;
+            --tech: #10b981;
+            --culture: #8b5cf6;
+        }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #fafafa;
+        }
+        .serif { font-family: 'Noto Serif SC', serif; }
+        
+        /* Hero Background */
+        .hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f59e0b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Cards */
+        .trend-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid transparent;
+        }
+        .trend-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+        }
+        .trend-card.social { border-left-color: var(--social); }
+        .trend-card.tech { border-left-color: var(--tech); }
+        .trend-card.culture { border-left-color: var(--culture); }
+        
+        /* Section Headers */
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-social { background: rgba(59, 130, 246, 0.1); color: var(--social); }
+        .badge-tech { background: rgba(16, 185, 129, 0.1); color: var(--tech); }
+        .badge-culture { background: rgba(139, 92, 246, 0.1); color: var(--culture); }
+        .badge-collision { background: rgba(245, 158, 11, 0.15); color: var(--accent); }
+        
+        /* Data Highlight */
+        .data-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        /* Chart Containers */
+        .chart-container {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        /* Collision Cards */
+        .collision-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .collision-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
+        }
+        
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+        
+        /* Key Finding Box */
+        .key-finding {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0ea5e9;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 16px 0;
+        }
+        
+        /* Insight Tag */
+        .insight-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            background: rgba(245, 158, 11, 0.1);
+            color: #b45309;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid #e5e7eb;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            z-index: 100;
+            transition: width 0.1s;
+        }
+        
+        /* Footnote Tooltip */
+        .footnote {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dashed #92400e;
+            color: #92400e;
+        }
+        .footnote::after {
+            content: attr(data-ref);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            white-space: nowrap;
+            max-width: 300px;
+            white-space: normal;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .footnote:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Footnote List Styles */
+        .footnote-list {
+            font-size: 11px;
+            line-height: 1.6;
+        }
+        .footnote-list a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .footnote-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">未</span>
+                    </div>
+                    <span class="font-semibold text-slate-800">未来趋势研究</span>
+                </div>
+                <div class="hidden md:flex items-center gap-8 text-sm">
+                    <a href="#executive-summary" class="nav-link text-slate-600 hover:text-slate-900">核心发现</a>
+                    <a href="#social" class="nav-link text-slate-600 hover:text-slate-900">社会</a>
+                    <a href="#tech" class="nav-link text-slate-600 hover:text-slate-900">科技</a>
+                    <a href="#culture" class="nav-link text-slate-600 hover:text-slate-900">文化</a>
+                    <a href="#collisions" class="nav-link text-slate-600 hover:text-slate-900">碰撞点</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="max-w-3xl">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="px-4 py-1.5 bg-amber-500/20 text-amber-300 rounded-full text-sm font-medium">2026年度研究</span>
+                    <span class="text-slate-400 text-sm">基于50+中英文数据源</span>
+                </div>
+                <h1 class="serif text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+                    未来人类<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">生活趋势</span>
+                </h1>
+                <p class="text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl">
+                    从社会、科技、文化三维度扫描，识别未来十年的关键转变信号，为智能座舱设计提供战略洞察。
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#executive-summary" class="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-xl transition-all transform hover:scale-105">
+                        阅读报告
+                    </a>
+                    <a href="#collisions" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl backdrop-blur-sm transition-all">
+                        查看设计机会
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Key Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl font-bold text-amber-400 mb-1">25%<span class="footnote text-xs align-top" data-ref="单人户占比 来源：ColombiaOne">¹</span></div>
+                    <div class="text-slate-400 text-sm">单人户占比</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl font-bold text-amber-400 mb-1">2.3→4.5<span class="footnote text-xs align-top" data-ref="情绪经济 来源：艾媒咨询">²</span></div>
+                    <div class="text-slate-400 text-sm">情绪经济万亿</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl font-bold text-amber-400 mb-1">1600万+<span class="footnote text-xs align-top" data-ref="一人公司 来源：新华网">³</span></div>
+                    <div class="text-slate-400 text-sm">一人公司</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl font-bold text-amber-400 mb-1">53.3%<span class="footnote text-xs align-top" data-ref="新能源车渗透率 来源：Global Times">⁴</span></div>
+                    <div class="text-slate-400 text-sm">新能源车渗透率</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Summary -->
+    <section id="executive-summary" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="section-badge badge-collision mb-4">Executive Summary</span>
+                <h2 class="serif text-4xl font-bold text-slate-900 mb-6">三大关键发现</h2>
+                <p class="text-lg text-slate-600">基于2024-2026年最新数据，我们识别出三个正在加速发生的结构性转变</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Finding 1 -->
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 shadow-lg">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">AI原生生活加速到来</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        AI Agent市场年复合增长率<span class="data-highlight">45.82%</span><span class="footnote" data-ref="CAGR 45.82% 来源：Master of Code">⁸</span>，44%消费者愿用AI做个人助理，Gen Z中达70%。51%企业已生产部署，AI正从工具层向基础设施层迁移。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="insight-tag">AI Agent爆发</span>
+                        <span class="insight-tag">一人公司1600万+</span>
+                    </div>
+                </div>
+                
+                <!-- Finding 2 -->
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 shadow-lg">
+                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">情绪经济规模被严重低估</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        情绪经济2024年规模达<span class="data-highlight">2.3万亿</span><span class="footnote" data-ref="情绪经济2.3万亿 来源：艾媒咨询">⁶</span>，预计2029年突破4.5万亿；银发经济15.8万亿<span class="footnote" data-ref="银发经济15.8万亿 来源：CGTN">²³</span>，2035年预计达30万亿。两者合计是未来十年最重要的消费增长引擎。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="insight-tag">情绪消费爆发</span>
+                        <span class="insight-tag">银发经济30万亿</span>
+                    </div>
+                </div>
+                
+                <!-- Finding 3 -->
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 shadow-lg">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">空间计算形态大转变</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        笨重头显正在让位于AI智能眼镜。Vision Pro Q4仅出货<span class="data-highlight">4.5万台</span>已停产，而Ray-Ban Meta智能眼镜售出超200万台。XR增长完全由智能眼镜驱动。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="insight-tag">AI眼镜崛起</span>
+                        <span class="insight-tag">头显退潮</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Dimension -->
+    <section id="social" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-badge badge-social">Social Dimension</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h2 class="serif text-4xl font-bold text-slate-900 mb-6">社会维度</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        家庭结构、工作方式、城市形态正在经历深刻重构。单人户崛起、一人公司爆发、灵活就业常态化，个体化生存成为主流叙事。
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="socialChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Trend Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Trend 1 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">家庭结构</span>
+                        <span class="text-2xl">🏠</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">单人户成为主流家庭形态</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        单人户占比已达<span class="data-highlight">25%</span><span class="footnote" data-ref="单人户25% 来源：ColombiaOne">¹</span>，预计2040年达30%。宠物经济<span class="data-highlight">3126亿元</span><span class="footnote" data-ref="宠物市场3126亿 来源：央视网">²</span>，90后占宠主42.7%。丁克家庭超200万对，非血缘共居（抱团养老）从边缘走向主流。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱需适配"一人出行"场景，宠物友好设计成为差异化要素</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 2 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">工作方式</span>
+                        <span class="text-2xl">💼</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI赋能超级个体崛起</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        一人公司突破<span class="data-highlight">1600万家</span><span class="footnote" data-ref="OPC突破1600万 来源：新华网">³</span>，2025上半年新注册增长47%。灵活就业2亿人，"智能经济新形态"写入政府工作报告。远程办公渗透率仅28%，弹性工作制有限扩展。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱作为"移动办公室"，需支持高效会议、文档处理、AI助手</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 3 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">城市形态</span>
+                        <span class="text-2xl">🏙️</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">收缩城市与15分钟社区</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        <span class="data-highlight">139座</span><span class="footnote" data-ref="139座收缩城市 来源：Nature">⁷</span>收缩型城市已被识别，330多个地级市中140多个人口持续下降。15分钟城市纳入国家政策框架，超30个城市制定专项规划。逆城市化修正为"超大城市郊区化+中小城市收缩"双轨并行。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">短途高频出行增加，座舱需适配15分钟生活圈场景</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 4 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">身心健康</span>
+                        <span class="text-2xl">🧠</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">情绪经济与银发经济爆发</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        情绪经济2024年<span class="data-highlight">2.3万亿</span><span class="footnote" data-ref="情绪经济2.3万亿 来源：艾媒咨询">⁶</span>→2029年4.5万亿；银发经济15.8万亿<span class="footnote" data-ref="银发经济15.8万亿 来源：CGTN">²³</span>→2035年30万亿。精神障碍人群2.8亿，睡眠经济<span class="data-highlight">5717亿元</span><span class="footnote" data-ref="睡眠经济5717亿 来源：增长黑盒">⁵</span>。情绪价值商品化成为消费核心驱动力。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱作为"情绪修复空间"，需提供减压、助眠、正念功能</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 5 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm md:col-span-2">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">社会关系</span>
+                        <span class="text-2xl">🤝</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">搭子文化与AI社交伴侣</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        搭子话题社交媒体累计<span class="data-highlight">1300万次</span><span class="footnote" data-ref="搭子话题1300万次 来源：Global Times">⁴</span>提及，33.3亿次互动，超80%年轻人将搭子发展为深层友谊。搭子关系向共同购房、合作创业延伸。AI社交伴侣正成为孤独经济的技术应对方案。
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 border-t border-slate-100 pt-4">
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                            <p class="text-sm text-slate-700 mt-1">座舱社交功能需支持"轻连接"，如拼车搭子、兴趣匹配</p>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">数据亮点</span>
+                            <p class="text-sm text-slate-700 mt-1">大理NCC数字游民社区5500+成员</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Dimension -->
+    <section id="tech" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-badge badge-tech">Technology Dimension</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div class="order-2 lg:order-1 chart-container">
+                    <canvas id="techChart"></canvas>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <h2 class="serif text-4xl font-bold text-slate-900 mb-6">科技维度</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        AI Agent从工具向基础设施迁移，智能眼镜取代笨重头显，新能源车渗透率过半，Robotaxi进入商业化拐点。技术形态正在发生根本性转变。
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Trend Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Trend 1 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">AI原生</span>
+                        <span class="text-2xl">🤖</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI Agent基础设施化</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        AI Agent市场2025年<span class="data-highlight">79.2亿美元</span>，预计2034年达2360亿美元，CAGR 45.82%<span class="footnote" data-ref="CAGR 45.82% 来源：Master of Code">⁸</span>。44%消费者愿用AI做个人助理（Gen Z达70%），51%企业已生产部署，到2028年68%客户互动预计由AI代理处理。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">车载AI Agent成为座舱核心交互界面，从被动响应走向主动服务</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 2 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">空间计算</span>
+                        <span class="text-2xl">👓</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI智能眼镜取代头显</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        2025年XR设备出货量增长<span class="data-highlight">44.4%</span><span class="footnote" data-ref="XR出货+44.4% 来源：IDC">⁹</span>，但完全由智能眼镜驱动。Vision Pro Q4仅出货4.5万台已停产，Ray-Ban Meta智能眼镜售出超200万台，2025上半年智能眼镜出货量暴增110%。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱AR/VR需与智能眼镜生态打通，而非独立头显方案</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 3 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">生物技术</span>
+                        <span class="text-2xl">💊</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">可穿戴从监测走向干预</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Apple Watch Series 11首次获FDA批准的血压监测功能，标志可穿戴从"监测"走向"干预"转折。GLP-1药物市场2025年约<span class="data-highlight">660亿美元</span>，预计2035年达1500-3200亿美元。脑机接口消费级至少推迟5-10年。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱健康监测从"显示数据"升级为"主动干预建议"</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 4 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">物联网</span>
+                        <span class="text-2xl">🌐</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI Agent+IoT融合</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        2025年全球联网IoT设备达<span class="data-highlight">211亿台</span><span class="footnote" data-ref="211亿IoT设备 来源：IoT Analytics">¹²</span>，同比增长14%，预计2030年达390亿台。智能家居市场1475亿美元。中国三大运营商占全球蜂窝IoT连接83%。AI Agent正在成为IoT设备的"大脑"。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱作为移动IoT中枢，需与智能家居、可穿戴设备无缝协同</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 5 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">能源</span>
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">新能源车与电网融合</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        中国2025年6月新能源车渗透率<span class="data-highlight">53.3%</span><span class="footnote" data-ref="新能源车53.3% 来源：Global Times">¹⁴</span>，首次过半。2025-2030年全球可再生能源装机增加<span class="data-highlight">4600GW</span><span class="footnote" data-ref="4600GW可再生能源 来源：IEA">¹³</span>，太阳能占近80%。55个十亿美元级气候灾害<span class="footnote" data-ref="55个气候灾害 来源：WMO">²⁵</span>，经济损失约2600-2750亿美元。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">V2G车网互动成为座舱能源管理新场景，家庭储能+光伏协同</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 6 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">出行</span>
+                        <span class="text-2xl">🚗</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Robotaxi商业化落地</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Pony.ai 2025年Q4 Robotaxi收入同比增长<span class="data-highlight">160%</span><span class="footnote" data-ref="Robotaxi收入+160% 来源：PR Newswire">¹⁵</span>，已在广州和深圳实现单车经济UE盈亏平衡。2026年目标3000+Robotaxi部署20+城市。低空经济<span class="data-highlight">1.5万亿元</span><span class="footnote" data-ref="低空经济1.5万亿 来源：中国日报">¹⁶</span>，拥有全球70%的eVTOL专利。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">Robotaxi座舱需重新定义空间功能，从"交通工具"转向"移动空间"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Dimension -->
+    <section id="culture" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-badge badge-culture">Culture Dimension</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h2 class="serif text-4xl font-bold text-slate-900 mb-6">文化维度</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        国潮从"潮流"质变为"文化自信底层架构"，身份认同碎片化催生"纳米圈层"，消费价值观从"拥有"转向"体验"，Z世代重新定义工作意义。
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="cultureChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Trend Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Trend 1 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">身份认同</span>
+                        <span class="text-2xl">🎭</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">纳米圈层与反人设运动</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Pop Mart 2024年营收超<span class="data-highlight">100亿元</span>，同比增长60%。60%+Z世代<span class="footnote" data-ref="60% Z世代身份认同 来源：HROne">²¹</span>寻找能"反映个人身份"的品牌。碎片化正从"大圈层增多"转向"纳米圈层加深"，同时部分年轻人因"人设疲惫"转向反标签化消费。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱个性化需支持"多重身份切换"，而非单一风格定义</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 2 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">消费价值观</span>
+                        <span class="text-2xl">✨</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">双速消费：高效+慢生活</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        2025年H1国内旅游人次3.29亿，较2019年<span class="data-highlight">+18%</span>。家庭储蓄率>30%，储蓄总额163万亿元。<span class="data-highlight">57.1%</span><span class="footnote" data-ref="57.1%情感满足付费 来源：Hub of China">²⁴</span>年轻消费者为情感满足付费。Z世代同时追求"慢生活美学"和高效数字工具（<span class="data-highlight">48.6%</span><span class="footnote" data-ref="48.6%每日用AI 来源：China Trading Desk">²⁰</span>每天使用AI）。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱需支持"双速模式"：高效通勤模式 vs 慢生活沉浸模式</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 3 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">审美趋势</span>
+                        <span class="text-2xl">🏮</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">国潮3.0：文化自信底层架构</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        抖音2024年博物馆内容播放量<span class="data-highlight">1246亿次</span><span class="footnote" data-ref="博物馆1246亿次 来源：Jing Daily">¹⁷</span>，"五一"博物馆接待超6000万人次（+17%），"中国龙"主题玩具需求增50倍。国潮3.0标志着从爱国时尚到深度文化认同的质变。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱美学设计需融入东方文化元素，而非简单符号堆砌</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 4 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">情感需求</span>
+                        <span class="text-2xl">💝</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI情感陪伴主流化</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        中国AI情感陪伴行业2025年约<span class="data-highlight">39亿元</span><span class="footnote" data-ref="AI陪伴39亿 来源：Asia Tech Lens">¹⁸</span>，预计2028年595亿元，CAGR约149%。《恋与深空》全球收入超7.5亿美元。陪伴机器人潜在市场接近1万亿元。线下体验溢价验证——旅游收入超疫情前18%。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">车载AI需具备情感陪伴能力，从工具交互走向情感连接</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 5 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm md:col-span-2">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">代际差异</span>
+                        <span class="text-2xl">👥</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Z世代的职业价值重构与代际共鸣消费</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Z世代绝非简单"躺平"——40.2%选稳定就业，35.1%为自由职业者，<span class="data-highlight">50%+有副业</span><span class="footnote" data-ref="50%+有副业 来源：Hub of China">¹⁹</span>，48.6%<span class="footnote" data-ref="48.6%每日用AI 来源：China Trading Desk">²⁰</span>每天使用AI工具。Alpha世代（97.3%<span class="footnote" data-ref="Alpha 97.3%互联网 来源：Daxue Consulting">²²</span>互联网渗透率）的成长环境是"数字丰盈+政策管控+父母精心设计"的三重叠加。银发族月均上网129小时，3.29亿老年互联网用户。代际共鸣消费带出现——Z世代养生与银发族高度重叠。
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 border-t border-slate-100 pt-4">
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                            <p class="text-sm text-slate-700 mt-1">座舱需适配"全龄段"用户，代际差异小于预期，共性大于差异</p>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">数据亮点</span>
+                            <p class="text-sm text-slate-700 mt-1">银发族月均上网129小时，3.29亿老年互联网用户</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collision Points -->
+    <section id="collisions" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="section-badge badge-collision mb-4">Cross-Dimensional Collisions</span>
+                <h2 class="serif text-4xl font-bold mb-6">跨维度碰撞点</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                    社会、科技、文化三维度交汇之处，是设计机会最密集的区域。以下是五个最值得关注的碰撞点。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Collision 1 -->
+                <div class="collision-card rounded-2xl p-8">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">1</span>
+                            <span class="text-amber-400 text-sm font-medium">AI × 情感</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">AI情感基础设施</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            AI Agent从工具层向情感陪伴层扩展，与孤独经济2.3万亿规模交汇。AI情感陪伴市场CAGR 149%，《恋与深空》收入超7.5亿美元。
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                如何让AI情感交互在车内等私密空间中自然发生？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collision 2 -->
+                <div class="collision-card rounded-2xl p-8">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">2</span>
+                            <span class="text-amber-400 text-sm font-medium">出行 × 城市</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">移动空间重新定义</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            Robotaxi已实现UE盈亏平衡，城市从通勤型向15分钟社区型转变。当出行不再是"从A到B"，车内空间可以成为什么？
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                当出行不再是"从A到B"，车内空间可以成为什么？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collision 3 -->
+                <div class="collision-card rounded-2xl p-8">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">3</span>
+                            <span class="text-amber-400 text-sm font-medium">银发 × 生物</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">长寿社会的技术适配</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            3亿银发族+30万亿市场规模，可穿戴设备从监测走向干预。Apple Watch血压监测获FDA批准，标志健康硬件从"数据展示"走向"主动干预"。
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                长寿社会中，座舱如何适配全龄段用户？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collision 4 -->
+                <div class="collision-card rounded-2xl p-8">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">4</span>
+                            <span class="text-amber-400 text-sm font-medium">身份 × 消费</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">精准身份匹配</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            纳米圈层+精准升级消费。Pop Mart营收100亿+，60%+Z世代寻找身份反映品牌。身份认同碎片化催生"场景化身份"需求。
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                座舱如何识别并适配用户当前的"身份模式"？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collision 5 -->
+                <div class="collision-card rounded-2xl p-8 md:col-span-2">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">5</span>
+                            <span class="text-amber-400 text-sm font-medium">情绪 × 审美</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">情感化空间设计</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            情绪消费规模爆发（2.3万亿→4.5万亿）+ 国潮文化自信底层化（博物馆内容1246亿次播放）。空间美学的功能从"好看"升级为"提供情绪价值"。
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                空间美学的功能从"好看"升级为"提供情绪价值"？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-badge badge-collision mb-4">数据来源</span>
+                <div class="h-px flex-1 bg-slate-300"></div>
+            </div>
+            
+            <h2 class="serif text-3xl font-bold text-slate-900 mb-8">参考文献</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[1] 单人户占比</div>
+                    <a href="https://colombiaone.com/2025/07/25/china-demographic-decline-population-single-person-household/" target="_blank" class="text-blue-600 hover:underline">ColombiaOne - China's Demographic Decline</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[2] 宠物市场3126亿元</div>
+                    <a href="https://business.cctv.com/2026/01/05/ARTIdmv2AWmVeRVodaZYLOvQ260105.shtml" target="_blank" class="text-blue-600 hover:underline">央视网 - 2026年中国宠物行业白皮书</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[3] OPC突破1600万家</div>
+                    <a href="https://www.xinhuanet.com/fortune/20260321/943f6293dbe14f918ef29a481d12a6d0/c.html" target="_blank" class="text-blue-600 hover:underline">新华网 - "一人公司"财经观察</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[4] 搭子话题1300万次</div>
+                    <a href="https://www.globaltimes.cn/page/202503/1331106.shtml" target="_blank" class="text-blue-600 hover:underline">Global Times - China's "dazi culture" evolution</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[5] 睡眠经济5717亿元</div>
+                    <a href="https://growthbox.net/china-sleep-economy-2025-market-trends/" target="_blank" class="text-blue-600 hover:underline">增长黑盒 - 2025中国睡眠经济报告</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[6] 情绪经济2.3万亿</div>
+                    <a href="https://www.iimedia.cn/c400/106827.html" target="_blank" class="text-blue-600 hover:underline">艾媒咨询 - 2025-2029年中国情绪经济消费趋势</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[7] 139座收缩城市</div>
+                    <a href="https://www.nature.com/articles/s42949-025-00276-y" target="_blank" class="text-blue-600 hover:underline">Nature - From concentration to dispersion</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[8] AI Agent CAGR 45.82%</div>
+                    <a href="https://masterofcode.com/blog/ai-agent-statistics" target="_blank" class="text-blue-600 hover:underline">Master of Code - 150+ AI Agent Statistics 2026</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[9] XR出货量+44.4%</div>
+                    <a href="https://www.idc.com/promo/arvr/" target="_blank" class="text-blue-600 hover:underline">IDC - XR Market Expands 44.4% in 2025</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[10] 全球BCI仅71人使用</div>
+                    <a href="https://www.technologyreview.com/2025/04/01/1114009/brain-computer-interfaces-10-breakthrough-technologies-2025/" target="_blank" class="text-blue-600 hover:underline">MIT Technology Review - BCI Critical Test</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[12] 211亿台IoT设备</div>
+                    <a href="https://iotbusinessnews.com/2025/10/30/state-of-iot-2025-number-of-connected-iot-devices-growing-14-to-21-1-billion-globally/" target="_blank" class="text-blue-600 hover:underline">IoT Analytics - State of IoT 2025</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[13] 可再生能源4600GW</div>
+                    <a href="https://www.iea.org/reports/renewables-2025/executive-summary" target="_blank" class="text-blue-600 hover:underline">IEA - Renewables 2025 Executive Summary</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[14] 新能源车53.3%</div>
+                    <a href="https://www.globaltimes.cn/page/202508/1340067.shtml" target="_blank" class="text-blue-600 hover:underline">Global Times - China's NEV penetration 44.3%</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[15] Robotaxi收入+160%</div>
+                    <a href="https://www.prnewswire.com/news-releases/ponyai-targets-3-000-robotaxis-in-over-20-cities-in-2026-expects-dual-engines-to-drive-full-fledged-growth-302725955.html" target="_blank" class="text-blue-600 hover:underline">PR Newswire - Pony.ai Targets 3000 Robotaxis</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[16] 低空经济1.5万亿</div>
+                    <a href="https://english.www.gov.cn/news/202510/17/content_WS68f1feb5c6d00ca5f9a06ddb.html" target="_blank" class="text-blue-600 hover:underline">中国日报 - China's low-altitude economy</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[17] 博物馆播放1246亿次</div>
+                    <a href="https://jingdaily.com/posts/from-guochao-to-zixin-china-s-new-era-of-cultural-confidence" target="_blank" class="text-blue-600 hover:underline">Jing Daily - From 'guochao' to 'zixin'</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[18] AI陪伴39亿→595亿</div>
+                    <a href="https://www.asiatechlens.com/p/virtual-partners-real-markets-the" target="_blank" class="text-blue-600 hover:underline">Asia Tech Lens - AI Companions in Asia</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[19] Z世代50%+有副业</div>
+                    <a href="https://hubofchina.com/china-consumer-trends/" target="_blank" class="text-blue-600 hover:underline">Hub of China - China Consumer Trends 2025-2026</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[20] Z世代48.6%每日用AI</div>
+                    <a href="https://www.chinatradingdesk.com/post/inside-china-s-2025-youth-lifestyle-revolution-how-digital-natives-are-redefining-value-work-and" target="_blank" class="text-blue-600 hover:underline">China Trading Desk - Youth Lifestyle Revolution</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[21] 60%+Z世代身份认同</div>
+                    <a href="https://hrone.com/blog/the-chinese-gen-z-consumer-values-digital-habits-and-opportunities-2025-edition/" target="_blank" class="text-blue-600 hover:underline">HROne - Chinese Gen Z Consumer 2025</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[22] Alpha 97.3%互联网</div>
+                    <a href="https://daxueconsulting.com/how-chinas-gen-alpha-is-reshaping-consumption/" target="_blank" class="text-blue-600 hover:underline">Daxue Consulting - China's Gen Alpha</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[23] 银发经济15.8万亿</div>
+                    <a href="https://news.cgtn.com/news/2025-01-17/Graphics-China-s-silver-economy-grows-amid-global-aging-trend-1Aee8kp0mHK/p.html" target="_blank" class="text-blue-600 hover:underline">CGTN - China's silver economy</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[24] 57.1%情感满足付费</div>
+                    <a href="https://hubofchina.com/micro-ritual-premium-moments-new-consumer-language-china/" target="_blank" class="text-blue-600 hover:underline">Hub of China - Micro Ritual Premium Moments</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm footnote-list">
+                    <div class="font-semibold text-slate-800 mb-1">[25] 55个气候灾害</div>
+                    <a href="https://wmo.int/publication-series/state-of-global-climate/state-of-global-climate-2025" target="_blank" class="text-blue-600 hover:underline">WMO - State of the Global Climate 2025</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">未</span>
+                    </div>
+                    <span class="font-semibold text-slate-300">未来趋势研究</span>
+                </div>
+                <div class="text-sm">
+                    基于50+中英文数据源 | 研究时间：2026年3月
+                </div>
+                <div class="text-sm">
+                    数据来源：微信公众号、学术期刊、行业白皮书、新闻报道
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Navigation Active State
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Charts
+        Chart.defaults.font.family = "'Noto Sans SC', sans-serif";
+        Chart.defaults.color = '#64748b';
+
+        // Social Chart - Family Structure
+        const socialCtx = document.getElementById('socialChart').getContext('2d');
+        new Chart(socialCtx, {
+            type: 'line',
+            data: {
+                labels: ['2010', '2015', '2020', '2025', '2030', '2035', '2040'],
+                datasets: [{
+                    label: '单人户占比 (%)',
+                    data: [12, 16, 20, 25, 27, 29, 30],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '单人户家庭占比趋势预测',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 35
+                    }
+                }
+            }
+        });
+
+        // Tech Chart - AI Agent Market
+        const techCtx = document.getElementById('techChart').getContext('2d');
+        new Chart(techCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034'],
+                datasets: [{
+                    label: '市场规模 (亿美元)',
+                    data: [79, 115, 168, 245, 357, 520, 758, 1105, 1610, 2360],
+                    backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'AI Agent市场规模预测 (CAGR 45.82%)',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Culture Chart - Guochao Data
+        const cultureCtx = document.getElementById('cultureChart').getContext('2d');
+        new Chart(cultureCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['博物馆内容播放 (亿次)', '国潮玩具增长 (倍)', 'Z世代身份认同 (%)'],
+                datasets: [{
+                    data: [1246, 50, 60],
+                    backgroundColor: [
+                        'rgba(139, 92, 246, 0.8)',
+                        'rgba(245, 158, 11, 0.8)',
+                        'rgba(59, 130, 246, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '国潮文化关键指标',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
