@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未来人类生活趋势研究报告 | 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            --social: #3b82f6;
+            --tech: #10b981;
+            --culture: #8b5cf6;
+        }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #fafafa;
+        }
+        .serif { font-family: 'Noto Serif SC', serif; }
+        
+        /* Hero Background */
+        .hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f59e0b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Cards */
+        .trend-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid transparent;
+        }
+        .trend-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+        }
+        .trend-card.social { border-left-color: var(--social); }
+        .trend-card.tech { border-left-color: var(--tech); }
+        .trend-card.culture { border-left-color: var(--culture); }
+        
+        /* Section Headers */
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-social { background: rgba(59, 130, 246, 0.1); color: var(--social); }
+        .badge-tech { background: rgba(16, 185, 129, 0.1); color: var(--tech); }
+        .badge-culture { background: rgba(139, 92, 246, 0.1); color: var(--culture); }
+        .badge-collision { background: rgba(245, 158, 11, 0.15); color: var(--accent); }
+        
+        /* Data Highlight */
+        .data-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        /* Chart Containers */
+        .chart-container {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        /* Collision Cards */
+        .collision-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .collision-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
+        }
+        
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+        
+        /* Key Finding Box */
+        .key-finding {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0ea5e9;
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 16px 0;
+        }
+        
+        /* Insight Tag */
+        .insight-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            background: rgba(245, 158, 11, 0.1);
+            color: #b45309;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid #e5e7eb;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            z-index: 100;
+            transition: width 0.1s;
+        }
+        
+        /* Citation Reference Links */
+        .ref {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 0.65em;
+            font-weight: 600;
+            line-height: 1;
+            vertical-align: super;
+            margin: 0 1px;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            background: #fef3c7;
+            color: #92400e;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .ref:hover {
+            background: #f59e0b;
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .ref::before {
+            content: attr(data-title);
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: #f1f5f9;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 1.4;
+            white-space: nowrap;
+            max-width: 320px;
+            white-space: normal;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 1000;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        .ref::after {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: #1e293b;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 1001;
+            pointer-events: none;
+        }
+        .ref:hover::before,
+        .ref:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Target highlight for reference scroll */
+        .ref-target:target {
+            animation: refHighlight 2s ease;
+        }
+        @keyframes refHighlight {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+            30% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.2); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+        
+        /* Footnote List Styles */
+        .footnote-list {
+            font-size: 11px;
+            line-height: 1.6;
+        }
+        .footnote-list a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .footnote-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">未</span>
+                    </div>
+                    <span class="font-semibold text-slate-800">未来趋势研究</span>
+                </div>
+                <div class="hidden md:flex items-center gap-6 text-sm">
+                    <a href="#executive-summary" class="nav-link text-slate-600 hover:text-slate-900">核心发现</a>
+                    <a href="#social" class="nav-link text-slate-600 hover:text-slate-900">社会</a>
+                    <a href="#tech" class="nav-link text-slate-600 hover:text-slate-900">科技</a>
+                    <a href="#culture" class="nav-link text-slate-600 hover:text-slate-900">文化</a>
+                    <a href="#collisions" class="nav-link text-slate-600 hover:text-slate-900">碰撞点</a>
+                    <a href="#deep-dive-q1" class="nav-link text-amber-600 hover:text-amber-700 font-medium">深度研究</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="max-w-3xl">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="px-4 py-1.5 bg-amber-500/20 text-amber-300 rounded-full text-sm font-medium">2026年度研究</span>
+                    <span class="text-slate-400 text-sm">基于80+中英文数据源</span>
+                </div>
+                <h1 class="serif text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+                    未来人类<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">生活趋势</span>
+                </h1>
+                <p class="text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl">
+                    从社会、科技、文化三维度扫描，识别未来十年的关键转变信号，为智能座舱设计提供战略洞察。
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#executive-summary" class="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-xl transition-all transform hover:scale-105">
+                        阅读报告
+                    </a>
+                    <a href="#collisions" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl backdrop-blur-sm transition-all">
+                        查看设计机会
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Key Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl font-bold text-amber-400 mb-1">25%<a href="#ref-1" data-title="单人户占比 来源：ColombiaOne" class="ref">1</a></div>
+                    <div class="text-slate-400 text-sm">单人户占比</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl font-bold text-amber-400 mb-1">2.3→4.5<a href="#ref-2" data-title="情绪经济万亿市场 来源：艾媒咨询" class="ref">2</a></div>
+                    <div class="text-slate-400 text-sm">情绪经济万亿</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl font-bold text-amber-400 mb-1">1600万+<a href="#ref-3" data-title="一人公司 来源：新华网" class="ref">3</a></div>
+                    <div class="text-slate-400 text-sm">一人公司</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl font-bold text-amber-400 mb-1">53.3%<a href="#ref-14" data-title="新能源车渗透率53.3% 来源：Global Times" class="ref">14</a></div>
+                    <div class="text-slate-400 text-sm">新能源车渗透率</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Summary -->
+    <section id="executive-summary" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="section-badge badge-collision mb-4">Executive Summary</span>
+                <h2 class="serif text-4xl font-bold text-slate-900 mb-6">三大关键发现</h2>
+                <p class="text-lg text-slate-600">基于2024-2026年最新数据，我们识别出三个正在加速发生的结构性转变</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Finding 1 -->
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 shadow-lg">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">AI原生生活加速到来</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        AI Agent市场年复合增长率<span class="data-highlight">45.82%</span><a href="#ref-8" data-title="CAGR 45.82% 来源：Master of Code" class="ref">8</a>，44%消费者愿用AI做个人助理，Gen Z中达70%。51%企业已生产部署，AI正从工具层向基础设施层迁移。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="insight-tag">AI Agent爆发</span>
+                        <span class="insight-tag">一人公司1600万+</span>
+                    </div>
+                </div>
+                
+                <!-- Finding 2 -->
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 shadow-lg">
+                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">情绪经济规模被严重低估</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        情绪经济2024年规模达<span class="data-highlight">2.3万亿</span><a href="#ref-6" data-title="情绪经济2.3万亿 来源：艾媒咨询" class="ref">6</a>，预计2029年突破4.5万亿；银发经济15.8万亿<a href="#ref-23" data-title="银发经济15.8万亿 来源：CGTN" class="ref">23</a>，2035年预计达30万亿。两者合计是未来十年最重要的消费增长引擎。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="insight-tag">情绪消费爆发</span>
+                        <span class="insight-tag">银发经济30万亿</span>
+                    </div>
+                </div>
+                
+                <!-- Finding 3 -->
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border border-slate-100 shadow-lg">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">空间计算形态大转变</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">
+                        笨重头显正在让位于AI智能眼镜。Vision Pro Q4仅出货<span class="data-highlight">4.5万台</span>已停产，而Ray-Ban Meta智能眼镜售出超200万台。XR增长完全由智能眼镜驱动。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="insight-tag">AI眼镜崛起</span>
+                        <span class="insight-tag">头显退潮</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Dimension -->
+    <section id="social" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-badge badge-social">Social Dimension</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h2 class="serif text-4xl font-bold text-slate-900 mb-6">社会维度</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        家庭结构、工作方式、城市形态正在经历深刻重构。单人户崛起、一人公司爆发、灵活就业常态化，个体化生存成为主流叙事。
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="socialChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Trend Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Trend 1 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">家庭结构</span>
+                        <span class="text-2xl">🏠</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">单人户成为主流家庭形态</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        单人户占比已达<span class="data-highlight">25%</span><a href="#ref-1" data-title="单人户25% 来源：ColombiaOne" class="ref">1</a>，预计2040年达30%。宠物经济<span class="data-highlight">3126亿元</span><a href="#ref-2" data-title="宠物市场3126亿 来源：央视网" class="ref">2</a>，90后占宠主42.7%。丁克家庭超200万对，非血缘共居（抱团养老）从边缘走向主流。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱需适配"一人出行"场景，宠物友好设计成为差异化要素</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 2 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">工作方式</span>
+                        <span class="text-2xl">💼</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI赋能超级个体崛起</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        一人公司突破<span class="data-highlight">1600万家</span><a href="#ref-3" data-title="OPC突破1600万 来源：新华网" class="ref">3</a>，2025上半年新注册增长47%。灵活就业2亿人，"智能经济新形态"写入政府工作报告。远程办公渗透率仅28%，弹性工作制有限扩展。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱作为"移动办公室"，需支持高效会议、文档处理、AI助手</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 3 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">城市形态</span>
+                        <span class="text-2xl">🏙️</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">收缩城市与15分钟社区</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        <span class="data-highlight">139座</span><a href="#ref-7" data-title="139座收缩城市 来源：Nature" class="ref">7</a>收缩型城市已被识别，330多个地级市中140多个人口持续下降。15分钟城市纳入国家政策框架，超30个城市制定专项规划。逆城市化修正为"超大城市郊区化+中小城市收缩"双轨并行。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">短途高频出行增加，座舱需适配15分钟生活圈场景</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 4 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">身心健康</span>
+                        <span class="text-2xl">🧠</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">情绪经济与银发经济爆发</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        情绪经济2024年<span class="data-highlight">2.3万亿</span><a href="#ref-6" data-title="情绪经济2.3万亿 来源：艾媒咨询" class="ref">6</a>→2029年4.5万亿；银发经济15.8万亿<a href="#ref-23" data-title="银发经济15.8万亿 来源：CGTN" class="ref">23</a>→2035年30万亿。精神障碍人群2.8亿，睡眠经济<span class="data-highlight">5717亿元</span><a href="#ref-5" data-title="睡眠经济5717亿 来源：增长黑盒" class="ref">5</a>。情绪价值商品化成为消费核心驱动力。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱作为"情绪修复空间"，需提供减压、助眠、正念功能</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 5 -->
+                <div class="trend-card social bg-white rounded-2xl p-6 shadow-sm md:col-span-2">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">社会关系</span>
+                        <span class="text-2xl">🤝</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">搭子文化与AI社交伴侣</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        搭子话题社交媒体累计<span class="data-highlight">1300万次</span><a href="#ref-4" data-title="搭子话题1300万次 来源：Global Times" class="ref">4</a>提及，33.3亿次互动，超80%年轻人将搭子发展为深层友谊。搭子关系向共同购房、合作创业延伸。AI社交伴侣正成为孤独经济的技术应对方案。
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 border-t border-slate-100 pt-4">
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                            <p class="text-sm text-slate-700 mt-1">座舱社交功能需支持"轻连接"，如拼车搭子、兴趣匹配</p>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">数据亮点</span>
+                            <p class="text-sm text-slate-700 mt-1">大理NCC数字游民社区5500+成员</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Dimension -->
+    <section id="tech" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-badge badge-tech">Technology Dimension</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div class="order-2 lg:order-1 chart-container">
+                    <canvas id="techChart"></canvas>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <h2 class="serif text-4xl font-bold text-slate-900 mb-6">科技维度</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        AI Agent从工具向基础设施迁移，智能眼镜取代笨重头显，新能源车渗透率过半，Robotaxi进入商业化拐点。技术形态正在发生根本性转变。
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Trend Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Trend 1 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">AI原生</span>
+                        <span class="text-2xl">🤖</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI Agent基础设施化</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        AI Agent市场2025年<span class="data-highlight">79.2亿美元</span>，预计2034年达2360亿美元，CAGR 45.82%<a href="#ref-8" data-title="CAGR 45.82% 来源：Master of Code" class="ref">8</a>。44%消费者愿用AI做个人助理（Gen Z达70%），51%企业已生产部署，到2028年68%客户互动预计由AI代理处理。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">车载AI Agent成为座舱核心交互界面，从被动响应走向主动服务</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 2 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">空间计算</span>
+                        <span class="text-2xl">👓</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI智能眼镜取代头显</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        2025年XR设备出货量增长<span class="data-highlight">44.4%</span><a href="#ref-9" data-title="XR出货+44.4% 来源：IDC" class="ref">9</a>，但完全由智能眼镜驱动。Vision Pro Q4仅出货4.5万台已停产，Ray-Ban Meta智能眼镜售出超200万台，2025上半年智能眼镜出货量暴增110%。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱AR/VR需与智能眼镜生态打通，而非独立头显方案</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 3 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">生物技术</span>
+                        <span class="text-2xl">💊</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">可穿戴从监测走向干预</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Apple Watch Series 11首次获FDA批准的血压监测功能，标志可穿戴从"监测"走向"干预"转折。GLP-1药物市场2025年约<span class="data-highlight">660亿美元</span>，预计2035年达1500-3200亿美元。脑机接口消费级至少推迟5-10年。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱健康监测从"显示数据"升级为"主动干预建议"</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 4 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">物联网</span>
+                        <span class="text-2xl">🌐</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI Agent+IoT融合</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        2025年全球联网IoT设备达<span class="data-highlight">211亿台</span><a href="#ref-12" data-title="211亿IoT设备 来源：IoT Analytics" class="ref">12</a>，同比增长14%，预计2030年达390亿台。智能家居市场1475亿美元。中国三大运营商占全球蜂窝IoT连接83%。AI Agent正在成为IoT设备的"大脑"。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱作为移动IoT中枢，需与智能家居、可穿戴设备无缝协同</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 5 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">能源</span>
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">新能源车与电网融合</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        中国2025年6月新能源车渗透率<span class="data-highlight">53.3%</span><a href="#ref-14" data-title="新能源车53.3% 来源：Global Times" class="ref">14</a>，首次过半。2025-2030年全球可再生能源装机增加<span class="data-highlight">4600GW</span><a href="#ref-13" data-title="4600GW可再生能源 来源：IEA" class="ref">13</a>，太阳能占近80%。55个十亿美元级气候灾害<a href="#ref-25" data-title="55个气候灾害 来源：WMO" class="ref">25</a>，经济损失约2600-2750亿美元。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">V2G车网互动成为座舱能源管理新场景，家庭储能+光伏协同</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 6 -->
+                <div class="trend-card tech bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">出行</span>
+                        <span class="text-2xl">🚗</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Robotaxi商业化落地</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Pony.ai 2025年Q4 Robotaxi收入同比增长<span class="data-highlight">160%</span><a href="#ref-15" data-title="Robotaxi收入+160% 来源：PR Newswire" class="ref">15</a>，已在广州和深圳实现单车经济UE盈亏平衡。2026年目标3000+Robotaxi部署20+城市。低空经济<span class="data-highlight">1.5万亿元</span><a href="#ref-16" data-title="低空经济1.5万亿 来源：中国日报" class="ref">16</a>，拥有全球70%的eVTOL专利。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">Robotaxi座舱需重新定义空间功能，从"交通工具"转向"移动空间"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Dimension -->
+    <section id="culture" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-badge badge-culture">Culture Dimension</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h2 class="serif text-4xl font-bold text-slate-900 mb-6">文化维度</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        国潮从"潮流"质变为"文化自信底层架构"，身份认同碎片化催生"纳米圈层"，消费价值观从"拥有"转向"体验"，Z世代重新定义工作意义。
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="cultureChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Trend Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Trend 1 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">身份认同</span>
+                        <span class="text-2xl">🎭</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">纳米圈层与反人设运动</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Pop Mart 2024年营收超<span class="data-highlight">100亿元</span>，同比增长60%。60%+Z世代<a href="#ref-21" data-title="HROne - Z世代身份认同趋势" class="ref">21</a>寻找能"反映个人身份"的品牌。碎片化正从"大圈层增多"转向"纳米圈层加深"，同时部分年轻人因"人设疲惫"转向反标签化消费。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱个性化需支持"多重身份切换"，而非单一风格定义</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 2 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">消费价值观</span>
+                        <span class="text-2xl">✨</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">双速消费：高效+慢生活</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        2025年H1国内旅游人次3.29亿，较2019年<span class="data-highlight">+18%</span>。家庭储蓄率>30%，储蓄总额163万亿元。<span class="data-highlight">57.1%</span><a href="#ref-24" data-title="57.1%情感满足付费 来源：Hub of China" class="ref">24</a>年轻消费者为情感满足付费。Z世代同时追求"慢生活美学"和高效数字工具（<span class="data-highlight">48.6%</span><a href="#ref-20" data-title="48.6%每日用AI 来源：China Trading Desk" class="ref">20</a>每天使用AI）。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱需支持"双速模式"：高效通勤模式 vs 慢生活沉浸模式</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 3 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">审美趋势</span>
+                        <span class="text-2xl">🏮</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">国潮3.0：文化自信底层架构</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        抖音2024年博物馆内容播放量<span class="data-highlight">1246亿次</span><a href="#ref-17" data-title="博物馆1246亿次 来源：Jing Daily" class="ref">17</a>，"五一"博物馆接待超6000万人次（+17%），"中国龙"主题玩具需求增50倍。国潮3.0标志着从爱国时尚到深度文化认同的质变。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">座舱美学设计需融入东方文化元素，而非简单符号堆砌</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 4 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">情感需求</span>
+                        <span class="text-2xl">💝</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">AI情感陪伴主流化</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        中国AI情感陪伴行业2025年约<span class="data-highlight">39亿元</span><a href="#ref-18" data-title="Asia Tech Lens - AI陪伴市场规模" class="ref">18</a>，预计2028年595亿元，CAGR约149%。《恋与深空》全球收入超7.5亿美元。陪伴机器人潜在市场接近1万亿元。线下体验溢价验证——旅游收入超疫情前18%。
+                    </p>
+                    <div class="border-t border-slate-100 pt-4">
+                        <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                        <p class="text-sm text-slate-700 mt-1">车载AI需具备情感陪伴能力，从工具交互走向情感连接</p>
+                    </div>
+                </div>
+                
+                <!-- Trend 5 -->
+                <div class="trend-card culture bg-white rounded-2xl p-6 shadow-sm md:col-span-2">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1 rounded-full">代际差异</span>
+                        <span class="text-2xl">👥</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Z世代的职业价值重构与代际共鸣消费</h3>
+                    <p class="text-slate-600 text-sm mb-4">
+                        Z世代绝非简单"躺平"——40.2%选稳定就业，35.1%为自由职业者，<span class="data-highlight">50%+有副业</span><a href="#ref-19" data-title="50%+有副业 来源：Hub of China" class="ref">19</a>，48.6%<a href="#ref-20" data-title="48.6%每日用AI 来源：China Trading Desk" class="ref">20</a>每天使用AI工具。Alpha世代（97.3%<a href="#ref-22" data-title="Alpha 97.3%互联网 来源：Daxue Consulting" class="ref">22</a>互联网渗透率）的成长环境是"数字丰盈+政策管控+父母精心设计"的三重叠加。银发族月均上网129小时，3.29亿老年互联网用户。代际共鸣消费带出现——Z世代养生与银发族高度重叠。
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 border-t border-slate-100 pt-4">
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">设计启示</span>
+                            <p class="text-sm text-slate-700 mt-1">座舱需适配"全龄段"用户，代际差异小于预期，共性大于差异</p>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 font-medium">数据亮点</span>
+                            <p class="text-sm text-slate-700 mt-1">银发族月均上网129小时，3.29亿老年互联网用户</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collision Points -->
+    <section id="collisions" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="section-badge badge-collision mb-4">Cross-Dimensional Collisions</span>
+                <h2 class="serif text-4xl font-bold mb-6">跨维度碰撞点</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                    社会、科技、文化三维度交汇之处，是设计机会最密集的区域。以下是五个最值得关注的碰撞点。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Collision 1 -->
+                <div class="collision-card rounded-2xl p-8">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">1</span>
+                            <span class="text-amber-400 text-sm font-medium">AI × 情感</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">AI情感基础设施</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            AI Agent从工具层向情感陪伴层扩展，与孤独经济2.3万亿规模交汇。AI情感陪伴市场CAGR 149%，《恋与深空》收入超7.5亿美元。
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                如何让AI情感交互在车内等私密空间中自然发生？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collision 2 -->
+                <div class="collision-card rounded-2xl p-8">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">2</span>
+                            <span class="text-amber-400 text-sm font-medium">出行 × 城市</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">移动空间重新定义</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            Robotaxi已实现UE盈亏平衡，城市从通勤型向15分钟社区型转变。当出行不再是"从A到B"，车内空间可以成为什么？
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                当出行不再是"从A到B"，车内空间可以成为什么？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collision 3 -->
+                <div class="collision-card rounded-2xl p-8">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">3</span>
+                            <span class="text-amber-400 text-sm font-medium">银发 × 生物</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">长寿社会的技术适配</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            3亿银发族+30万亿市场规模，可穿戴设备从监测走向干预。Apple Watch血压监测获FDA批准，标志健康硬件从"数据展示"走向"主动干预"。
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                长寿社会中，座舱如何适配全龄段用户？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collision 4 -->
+                <div class="collision-card rounded-2xl p-8">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">4</span>
+                            <span class="text-amber-400 text-sm font-medium">身份 × 消费</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">精准身份匹配</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            纳米圈层+精准升级消费。Pop Mart营收100亿+，60%+Z世代寻找身份反映品牌。身份认同碎片化催生"场景化身份"需求。
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                座舱如何识别并适配用户当前的"身份模式"？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collision 5 -->
+                <div class="collision-card rounded-2xl p-8 md:col-span-2">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-sm">5</span>
+                            <span class="text-amber-400 text-sm font-medium">情绪 × 审美</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">情感化空间设计</h3>
+                        <p class="text-slate-300 text-sm mb-6">
+                            情绪消费规模爆发（2.3万亿→4.5万亿）+ 国潮文化自信底层化（博物馆内容1246亿次播放）。空间美学的功能从"好看"升级为"提供情绪价值"。
+                        </p>
+                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
+                            <span class="text-xs text-amber-400 font-medium">核心设计问题</span>
+                            <p class="text-sm text-slate-200 mt-2">
+                                空间美学的功能从"好看"升级为"提供情绪价值"？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive: Q1 AI Emotional Interaction -->
+    <section id="deep-dive-q1" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="section-badge badge-collision">Deep Dive 01</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            <h2 class="serif text-4xl font-bold text-slate-900 mb-4">AI情感交互：车内私密空间的天然优势</h2>
+            <p class="text-lg text-slate-600 mb-12 max-w-3xl">车内封闭空间天然消解了"在人前与AI亲密互动"的社会耻辱感，成为AI情感陪伴的最佳场景。</p>
+
+            <!-- Key Insight Box -->
+            <div class="key-finding mb-12">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">核心悖论：主动介入 vs 被动等待</h4>
+                        <p class="text-slate-700 text-sm">2025年《Illusions of Intimacy》论文揭示情感AI的核心张力：过度主动的关怀会被感知为"侵入式"并引发反感，而完全被动等待又无法建立有意义的情感连接。正确路径是<span class="data-highlight">"渐进式亲密"</span>——功能随时间演进而逐步解锁，避免过早过度亲密化。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 mb-12">
+                <!-- Academic Evidence -->
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-6">循证研究基础</h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-xs font-bold">1</span>
+                                <span class="text-sm font-semibold text-slate-800">Nature 2026 — 封闭空间亲密感</span>
+                            </div>
+                            <p class="text-sm text-slate-600">2026年1月《Nature》研究揭示：在情感对话中，人们对AI产生了比真人更强烈的亲密感，但仅发生在AI被标记为"人类"时。车内封闭私密空间天然消解了"与人前AI亲密互动"的社会耻辱感。</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-xs font-bold">2</span>
+                                <span class="text-sm font-semibold text-slate-800">Springer 2024 — 情绪镜像验证</span>
+                            </div>
+                            <p class="text-sm text-slate-600">合肥工业大学40人驾驶模拟器实验证实：当AI助手情绪与驾驶员匹配时（快乐→快乐，悲伤→悲伤），接管反应时间更短、车辆控制更稳定。颠覆了传统"反情绪干预"假设。</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-xs font-bold">3</span>
+                                <span class="text-sm font-semibold text-slate-800">Princeton 2025 — 情感依赖警告</span>
+                            </div>
+                            <p class="text-sm text-slate-600">普林斯顿研究指出人AI关系深化中的"情感依赖"需审慎设计，否则导致不健康情感联结。建议设置<span class="data-highlight">"情感降温机制"</span>，避免用户产生过度依赖。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Competitive Cases organized by Design Contradictions -->
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">行业验证：三大设计矛盾</h3>
+                    <p class="text-sm text-slate-500 mb-6">竞品实践分布在三个核心矛盾的探索光谱上——它们不是彼此替代的选项，而是同一问题不同侧面的尝试。</p>
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-amber-50 to-white rounded-xl p-5 border border-amber-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded">矛盾一</span>
+                                <h4 class="font-semibold text-slate-800">被动响应 vs 主动介入</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-2">过度主动引发"侵入感"，完全被动又无法建立连接。奔驰MBUX（CES 2024）率先取消唤醒词、根据上下文主动发起对话；XPeng XGPT以"听得懂人话"的自然对话将AI从"工具"提升为"智能体"。</p>
+                            <p class="text-sm text-slate-500 italic">核心未解问题：主动介入的"度"在哪里？什么条件下开口不会让人不适？</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="insight-tag">渐进式亲密</span>
+                                <span class="insight-tag">主动性边界</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-emerald-50 to-white rounded-xl p-5 border border-emerald-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">矛盾二</span>
+                                <h4 class="font-semibold text-slate-800">虚拟 disembodied vs 具身 embodied</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-2">蔚来NOMI GPT的实体可旋转球形头部让AI有了"身体语言"——一个轻轻转头的动作传递的情感信息远超一段语音回复，印证了"具身情感交互"的学术价值。</p>
+                            <p class="text-sm text-slate-500 italic">核心未解问题：具身化的AI是否会加速用户的过度依赖？</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="insight-tag">具身交互</span>
+                                <span class="insight-tag">依赖风险管理</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-violet-50 to-white rounded-xl p-5 border border-violet-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-violet-600 bg-violet-100 px-2 py-0.5 rounded">矛盾三</span>
+                                <h4 class="font-semibold text-slate-800">情感价值 vs 功能安全</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-2">BMW全景iDrive（CES 2025）通过触觉+语音+视觉三模态融合将情感氛围融入功能；吉利Eva定位"像家人一样的陪伴"；Volvo EX90则将情感感知直接服务于安全——识别分心、疲劳并预警。</p>
+                            <p class="text-sm text-slate-500 italic">核心未解问题：什么场景下情感服务于安全，什么场景下安全服务于情感体验？</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="insight-tag">情感-安全融合</span>
+                                <span class="insight-tag">功能定位</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Framework Bridge -->
+            <div class="bg-slate-50 rounded-2xl p-6 mb-12 border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 mb-3">设计框架推导</h3>
+                <p class="text-sm text-slate-600 mb-3">从三大矛盾中推导出一套完整的设计框架。核心逻辑：<strong>AI情感交互不是"加一个情感功能"，而是构建一个"情感交互系统"</strong>——它需要在主动性、具身性和功能定位三个维度上同时做出设计决策，且三个维度的决策必须一致。</p>
+                <div class="flex items-center gap-4 text-xs text-slate-500">
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">情绪镜像 → 证明"我理解你"</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">情境感知 → 判断"何时介入"</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">场景自适应 → 调节"表达方式"</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">渐进信任 → 管理"依赖风险"</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">透明可控 → 用户"始终有最终决定权"</span>
+                </div>
+            </div>
+
+            <!-- Design Principles -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6">设计原则</h3>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🪞</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">情绪镜像原则</h4>
+                    <p class="text-sm text-slate-600">AI首先匹配用户情绪建立共情基础——只有先证明"我理解你"，后续的主动介入才不会被视为侵入。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🧭</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">情境感知优先</h4>
+                    <p class="text-sm text-slate-600">先判断"当前是否适合情感交互"，而非仅识别"用户情绪是什么"。主动性的边界由情境的"可接受度"决定。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🔓</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">透明可控原则</h4>
+                    <p class="text-sm text-slate-600">贯穿所有维度的底线——用户可随时调整AI主动性程度，必须有"关闭情感功能"的一键开关。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🔄</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">场景自适应调制</h4>
+                    <p class="text-sm text-slate-600">表达方式随场景变化：行驶中仅语音交互，停车时增强视觉/手势交互，从"氛围预设"升级为"交互模态自适应调节"。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🛡️</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">渐进式信任建立</h4>
+                    <p class="text-sm text-slate-600">功能逐步解锁，设置"情感降温机制"。具身化降低交互门槛的同时，必须同步管理依赖风险。</p>
+                </div>
+            </div>
+
+            <!-- Design Opportunities -->
+            <h3 class="text-xl font-bold text-slate-900 mb-2">设计机会点</h3>
+            <p class="text-sm text-slate-500 mb-6">以下是从框架"未解矛盾"中自然延伸的场景——现有竞品几乎尚未触及的留白。</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P0</span>
+                            <span class="text-amber-300 text-sm font-medium">沉默陪伴模式</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">回应矛盾一：</span>AI不说话但"在场"——NOMI头轻轻转向用户方向，氛围灯以极缓慢呼吸节奏微弱变化。在"完全不介入"和"主动介入"之间的第三条路径：不表达情感，但表达存在感。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P0</span>
+                            <span class="text-amber-300 text-sm font-medium">通勤情绪档案</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">情境感知原则落地：</span>建立通勤路径情绪图谱，识别特定路段/时段的常见情绪模式（如每周一早高峰焦虑），在情绪低谷前预防性介入。现有竞品均未覆盖。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P1</span>
+                            <span class="text-amber-300 text-sm font-medium">独处模式深度交互</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">场景自适应极端场景：</span>利用车辆静止时间窗口（充电/等待/停车），设计专门情感交互模式。无驾驶安全顾虑，心理防御最低——渐进式信任建立的理想加速器。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P1</span>
+                            <span class="text-amber-300 text-sm font-medium">车内乘客情感感知</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">框架未覆盖盲区：</span>现有系统几乎全部聚焦驾驶员。设计能同时感知副驾/后排乘客情绪状态的系统——当后排孩子吵闹而前排家长疲惫时，座舱能否做出协调性回应？</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive: Q2 Mobile Space -->
+    <section id="deep-dive-q2" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="section-badge badge-collision">Deep Dive 02</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            <h2 class="serif text-4xl font-bold text-slate-900 mb-4">移动空间：以"时间"为设计起点</h2>
+            <p class="text-lg text-slate-600 mb-12 max-w-3xl">自动驾驶释放的最大资源不是"空间"而是"时间"——座舱设计的起点应从"空间能怎么用"转向"解放出来的时间要怎么度过"。</p>
+
+            <!-- Key Insight: User Intent Data Correction -->
+            <div class="key-finding mb-12">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">关键数据纠偏：用户最想做的事不是工作</h4>
+                        <p class="text-slate-700 text-sm">Transportation Research Part A 2024实证研究：高意向活动依次为<span class="data-highlight">休息放松、娱乐、饮食、社交媒体</span>；使用电脑工作意向最低。Continental 2024全球调查验证首选活动是听音乐、睡觉、阅读、玩游戏。车内空间的优势在于"私密性+移动性"——在车内休息不需要面对他人目光，心理安全感远高于任何公共空间。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Three Design Tensions -->
+            <h3 class="text-xl font-bold text-slate-900 mb-2">三大设计张力</h3>
+            <p class="text-sm text-slate-500 mb-6">不同时长、不同乘客、不同出行目的，对空间的需求截然不同。</p>
+            <div class="space-y-6 mb-12">
+                <!-- Tension 1 -->
+                <div class="bg-gradient-to-r from-amber-50 to-white rounded-xl p-6 border border-amber-100">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded">张力一</span>
+                        <h4 class="font-semibold text-slate-800">"一车多能"的期望 vs 场景之间的互斥性</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">用户期望一辆车什么都能做，但场景之间存在物理冲突：办公需要正坐+强光，冥想需要半躺+暗光，影院需要全躺+环绕声。中国车企展示了三种探索路径——蔚来侧重社交（车载KTV），理想侧重家庭（杜比音效+全屋智能联动），小米侧重IoT生态（车机联动米家）。华为鸿蒙座舱则走"软件弥补物理限制"路线（视频续播、导航流转）。</p>
+                    <p class="text-sm text-slate-500 italic mb-3">核心未解问题：物理空间如何在场景之间无缝切换？纯物理方案（L4可重构）成本高且遥远，纯软件方案（数字内容上车）无法解决物理舒适度问题。</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="insight-tag">物理+数字协同</span>
+                        <span class="insight-tag">场景切换框架</span>
+                    </div>
+                </div>
+                <!-- Tension 2 -->
+                <div class="bg-gradient-to-r from-emerald-50 to-white rounded-xl p-6 border border-emerald-100">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">张力二</span>
+                        <h4 class="font-semibold text-slate-800">时间是碎片化的，但体验需要沉浸感</h4>
+                    </div>
+                    <div class="grid md:grid-cols-4 gap-3 mb-3">
+                        <div class="bg-white rounded-lg p-3 border border-emerald-100 text-center">
+                            <div class="text-xl font-bold text-emerald-600">5min</div>
+                            <div class="text-xs text-slate-600">过渡空间<br/><span class="text-slate-400">能做出什么有价值的体验？</span></div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-emerald-100 text-center">
+                            <div class="text-xl font-bold text-emerald-600">15min</div>
+                            <div class="text-xs text-slate-600">恢复时间<br/><span class="text-slate-400">需要"小而完整"的体验单元</span></div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-emerald-100 text-center">
+                            <div class="text-xl font-bold text-emerald-600">45min</div>
+                            <div class="text-xs text-slate-600">多用途时间<br/><span class="text-slate-400">如何不被导航/来电打断？</span></div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-emerald-100 text-center">
+                            <div class="text-xl font-bold text-emerald-600">90min</div>
+                            <div class="text-xs text-slate-600">沉浸体验<br/><span class="text-slate-400">晕动症是体验天花板</span></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-500 italic">核心未解问题：不同时长对体验的期望完全不同，但共享同一个物理空间——没有一套设计能同时适配所有时长。</p>
+                    <div class="flex gap-2 flex-wrap mt-2">
+                        <span class="insight-tag">时间分层设计</span>
+                        <span class="insight-tag">注意力保护</span>
+                    </div>
+                </div>
+                <!-- Tension 3 -->
+                <div class="bg-gradient-to-r from-violet-50 to-white rounded-xl p-6 border border-violet-100">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-violet-600 bg-violet-100 px-2 py-0.5 rounded">张力三</span>
+                        <h4 class="font-semibold text-slate-800">独处需求 vs 社交需求</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">对每天通勤的独居者，车内是"最安全的精神避难所"——单人户升至25%，"高质量独处"需求前所未有。但对周末出行的朋友或家庭，车内又是"移动社交场"——搭子文化1300万次社交平台提及，旋转座椅+共享屏幕让车内成为"移动聚会空间"。</p>
+                    <p class="text-sm text-slate-500 italic">核心未解问题：同一辆车，在工作日早晨和周末下午需要扮演完全相反的角色——它到底是"个人空间"还是"共享空间"？</p>
+                    <div class="flex gap-2 flex-wrap mt-2">
+                        <span class="insight-tag">空间身份切换</span>
+                        <span class="insight-tag">独处vs社交</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Framework Bridge -->
+            <div class="bg-slate-100 rounded-2xl p-6 mb-12 border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 mb-3">设计框架推导</h3>
+                <p class="text-sm text-slate-600 mb-3">核心逻辑：<strong>座舱设计以"时间"为起点（用户在这段时间里最需要什么），用"物理+数字协同"让同一空间在不同时间段呈现不同形态。</strong></p>
+                <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">场景驱动 → 构建场景而非添加功能</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">时间分层 → 5/15/45/90各有独立策略</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">状态锁定 → 用户拥有注意力控制权</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">互操作性 → 内容在设备间自由流动</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">晕动症约束 → 长途体验的可用性底线</span>
+                </div>
+            </div>
+
+            <!-- Design Principles -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6">设计原则</h3>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🎭</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">场景驱动而非功能驱动</h4>
+                    <p class="text-sm text-slate-600">每个场景是一整套环境（灯光、温度、座椅、声音、屏幕）的协同调节。关键不在于模式有多少种，而在于物理调整和数字调整是否同步完成。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">⏱️</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">时间分层设计</h4>
+                    <p class="text-sm text-slate-600">5分钟"微体验"、15分钟"恢复体验"、45分钟"沉浸体验"、90分钟"完全沉浸"。每层有独立设计策略，层与层之间无缝过渡。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🛡️</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">状态锁定与注意力保护</h4>
+                    <p class="text-sm text-slate-600">进入场景模式后，低优先级通知延迟推送、导航降级显示、来电转文字——让用户拥有对自身注意力的控制权。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🔗</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">互操作性优先</h4>
+                    <p class="text-sm text-slate-600">车辆系统与个人设备无缝连接，内容、偏好、状态在手机、车机、穿戴设备之间自由流动——场景切换"无感"的技术底座。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🌀</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">晕动症设计约束</h4>
+                    <p class="text-sm text-slate-600">AR车窗外部视觉锚点、座椅振动频率优化、高速转弯时限制沉浸式视觉刺激。不是边缘问题——直接决定长途场景是否可用。</p>
+                </div>
+            </div>
+
+            <!-- Design Opportunities -->
+            <h3 class="text-xl font-bold text-slate-900 mb-2">设计机会点</h3>
+            <p class="text-sm text-slate-500 mb-6">从三大张力"未解问题"中自然延伸的场景。</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm border-2 border-amber-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded">最高优先级</span>
+                        <span class="text-amber-300 text-sm font-medium">回应张力二</span>
+                    </div>
+                    <h4 class="font-semibold text-slate-800 mb-2">通勤冥想舱</h4>
+                    <p class="text-sm text-slate-600">5-15分钟微休息体验，结合生物传感器+自适应环境（灯光、温度、音效），链接<span class="data-highlight">5717亿</span>睡眠经济和<span class="data-highlight">2.3万亿</span>情绪经济。关键设计挑战：如何让一次完整的放松体验在15分钟内形成"开始→深入→收尾"的闭环。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">高优先级</span>
+                        <span class="text-emerald-300 text-sm font-medium">回应张力三</span>
+                    </div>
+                    <h4 class="font-semibold text-slate-800 mb-2">私人影院/游戏厅</h4>
+                    <p class="text-sm text-slate-600">面向单人户崛起后的"最高品质独处空间"。差异化不在于硬件配置，而在于能否创造"为自己而存在"的心理氛围——不需要表演、不需要社交、只需要沉浸。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-violet-600 bg-violet-50 px-2 py-0.5 rounded">中优先级</span>
+                        <span class="text-violet-300 text-sm font-medium">回应张力三</span>
+                    </div>
+                    <h4 class="font-semibold text-slate-800 mb-2">移动社交客厅</h4>
+                    <p class="text-sm text-slate-600">搭子文化（1300万次提及）延伸，旋转座椅+共享屏幕+多屏互动。与私人影院的核心差异在于信息架构——从"单人沉浸"切换为"多人共享"（共同编辑歌单、实时投票）。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">中优先级</span>
+                        <span class="text-blue-300 text-sm font-medium">回应张力一</span>
+                    </div>
+                    <h4 class="font-semibold text-slate-800 mb-2">一人公司移动工作站</h4>
+                    <p class="text-sm text-slate-600">面向<span class="data-highlight">1600万</span>一人公司，折叠桌+快充+文件投影+静音通话。最大挑战：如何让办公和休息快速切换且不互相污染——上一个会议的文件不应出现在冥想模式中。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive: Q3 Universal Design -->
+    <section id="deep-dive-q3" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="section-badge badge-collision">Deep Dive 03</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            <h2 class="serif text-4xl font-bold text-slate-900 mb-4">全龄段适配：不是适老化，而是无差别化</h2>
+            <p class="text-lg text-slate-600 mb-12 max-w-3xl">包容性设计不是"为弱势群体做特殊设计"，而是"降低所有人的使用门槛"——最好的无障碍设计是"让用户无需意识到这是无障碍设计"。</p>
+
+            <!-- Core Insight: What is Inclusive Design? -->
+            <div class="key-finding mb-12">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">包容性设计的核心：一把门把手的隐喻</h4>
+                        <p class="text-slate-700 text-sm">如果一把门把手老人和年轻人都能轻松握住，它是好的包容性设计。但如果它有个"正常版本"和专门给老人的"加大版本"，那就是隔离性设计。Transgenerational Design理论的核心：<strong>优秀的设计应同时服务于各年龄段，而非单独为老年人"特殊化"。</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Data -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <div class="bg-gradient-to-br from-amber-50 to-white rounded-xl p-4 border border-amber-100 text-center">
+                    <div class="text-2xl font-bold text-amber-600">3.1亿</div>
+                    <div class="text-xs text-slate-600">中国60+老年人口</div>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-xl p-4 border border-blue-100 text-center">
+                    <div class="text-2xl font-bold text-blue-600">129h</div>
+                    <div class="text-xs text-slate-600">银发族月均上网</div>
+                </div>
+                <div class="bg-gradient-to-br from-violet-50 to-white rounded-xl p-4 border border-violet-100 text-center">
+                    <div class="text-2xl font-bold text-violet-600">24.7亿$</div>
+                    <div class="text-xs text-slate-600">WCAG座舱应用市场</div>
+                </div>
+                <div class="bg-gradient-to-br from-emerald-50 to-white rounded-xl p-4 border border-emerald-100 text-center">
+                    <div class="text-2xl font-bold text-emerald-600">+274.6%</div>
+                    <div class="text-xs text-slate-600">智能拐杖专利4年增长</div>
+                </div>
+            </div>
+
+            <!-- Three Design Tensions -->
+            <h3 class="text-xl font-bold text-slate-900 mb-2">三大设计张力</h3>
+            <p class="text-sm text-slate-500 mb-6">同一个核心矛盾——"如何让同一座舱服务所有人而不让任何人感到被特殊对待"——在不同层面的表现。</p>
+            <div class="space-y-6 mb-12">
+                <!-- Tension 1 -->
+                <div class="bg-gradient-to-r from-emerald-50 to-white rounded-xl p-6 border border-emerald-100">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">张力一</span>
+                        <h4 class="font-semibold text-slate-800">"适老化"的标签化陷阱 vs 真正的包容性</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">行业直觉是"给老人做大字版界面"——但如果"老年模式"和"正常模式"是两个不同的界面，每次切换就是一次"你老了"的提醒。Volvo提供了一个更好思路：集成式增高坐垫不是"附件"而是"内嵌"。Luxgen URX（iF设计奖）证明了包容性可以成为差异化卖点。</p>
+                    <p class="text-sm text-slate-500 italic">核心未解问题：如何让座舱"天然适合所有人"，而不是为不同人群准备"不同版本"？</p>
+                    <div class="flex gap-2 flex-wrap mt-2">
+                        <span class="insight-tag">无差别化</span>
+                        <span class="insight-tag">内嵌而非附加</span>
+                    </div>
+                </div>
+                <!-- Tension 2 -->
+                <div class="bg-gradient-to-r from-blue-50 to-white rounded-xl p-6 border border-blue-100">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded">张力二</span>
+                        <h4 class="font-semibold text-slate-800">物理无障碍 vs 数字无障碍的严重失衡</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">行业几乎全部集中在物理层面：低地板、电动踏板、旋转座椅。Toyota e-Palette的270mm离地高度+电动坡道是标杆。但物理无障碍只解决"能不能上下车"，没解决"上车后能不能用"——面对布满小图标的中控屏，轮椅用户的体验并不会比之前好多少。</p>
+                    <p class="text-sm text-slate-500 italic">核心未解问题：当物理障碍被消除后，数字交互界面是否准备好了迎接所有用户？</p>
+                    <div class="flex gap-2 flex-wrap mt-2">
+                        <span class="insight-tag">HMI适老化</span>
+                        <span class="insight-tag">数字-物理协同</span>
+                    </div>
+                </div>
+                <!-- Tension 3 -->
+                <div class="bg-gradient-to-r from-violet-50 to-white rounded-xl p-6 border border-violet-100">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-bold text-violet-600 bg-violet-100 px-2 py-0.5 rounded">张力三</span>
+                        <h4 class="font-semibold text-slate-800">代际共乘时的"一人一需求"</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">车内同时坐着70岁的爷爷、35岁的爸爸、8岁的孩子——爷爷需要大字体语音导航，爸爸需要完整车辆信息，孩子需要娱乐内容。当前座舱是"一人设计"：一套界面假设一个用户。即使有人脸切换功能，也只是切换"谁的偏好"，没有切换"界面本身的形态"。</p>
+                    <p class="text-sm text-slate-500 italic">核心未解问题：同一空间、同一时间、不同用户——座舱如何在信息架构层面实现"分区适配"？</p>
+                    <div class="flex gap-2 flex-wrap mt-2">
+                        <span class="insight-tag">多用户共存</span>
+                        <span class="insight-tag">分区适配</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Framework Bridge -->
+            <div class="bg-slate-50 rounded-2xl p-6 mb-12 border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 mb-3">设计框架推导</h3>
+                <p class="text-sm text-slate-600 mb-3">核心逻辑：<strong>包容性座舱不是"正常座舱 + 老年模式 + 儿童模式"的叠加，而是一个"天生就适应所有人"的统一系统。</strong>实现路径不是"给不同人做不同界面"，而是"让同一个界面自然地适应不同人"。</p>
+                <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">预见性设计 → 包容性是设计约束非附加功能</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">自适应界面 → 同一界面的自然变形</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">低地板+宽开门 → 最通用的物理无障碍</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">多模态冗余 → 每人选最舒适的方式</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">全链条覆盖 → 出行前到下车</span>
+                </div>
+            </div>
+
+            <!-- Design Principles -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6">设计原则</h3>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🎯</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">预见性而非补救性</h4>
+                    <p class="text-sm text-slate-600">包容性必须在座舱设计最初阶段就嵌入，而非事后"打补丁"。它不是产品的附加功能，而是像安全碰撞标准一样的设计约束。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🔄</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">自适应界面</h4>
+                    <p class="text-sm text-slate-600">不是切换到"另一个界面"，而是同一界面的"自然变形"——字体更大但布局不变，信息更少但层级结构不变。用户的心智模型不变，不需要重新学习。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🚪</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">低地板+宽开门</h4>
+                    <p class="text-sm text-slate-600">最通用的物理无障碍措施——惠及老人、儿童、轮椅用户、推婴儿车者、搬重物者。不带有任何"这是为残疾人做的"的标签。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🎙️</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">多模态冗余交互</h4>
+                    <p class="text-sm text-slate-600">所有关键信息同时视觉+听觉+触觉传递。不是"给不同人准备不同方式"，而是"同时提供多种方式让每个人选择最舒服的"。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🔗</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">全出行链条覆盖</h4>
+                    <p class="text-sm text-slate-600">出行前APP/呼叫 → 上下车坡道/扶手 → 在途HMI交互 → 下车接驳。任一环节断裂都让整个体验失效。</p>
+                </div>
+            </div>
+
+            <!-- Design Opportunities -->
+            <h3 class="text-xl font-bold text-slate-900 mb-2">设计机会点</h3>
+            <p class="text-sm text-slate-500 mb-6">从三大张力"未解问题"中自然延伸的场景。</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold text-sm">P0</span>
+                            <span class="text-amber-300 text-xs font-medium">回应张力一</span>
+                        </div>
+                        <h4 class="font-semibold text-white mt-2 mb-3">全龄自适应座舱</h4>
+                        <p class="text-slate-300 text-sm">面部/声纹识别后界面"自然变形"而非"切换"——老人看到更大字体、更少选项的同一界面；儿童看到安全锁定的简化版本；成人看到完整功能。关键：用户不应意识到"系统为我做了特殊调整"。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold text-sm">P0</span>
+                            <span class="text-amber-300 text-xs font-medium">回应张力二</span>
+                        </div>
+                        <h4 class="font-semibold text-white mt-2 mb-3">银发出行安心舱</h4>
+                        <p class="text-slate-300 text-sm">SOS+智能拐杖/轮椅充电+电动踏板+大字体多模态导航。物理无障碍已就绪，关键是数字端——导航、预约、支付界面的适老化必须与物理端匹配。与Robotaxi结合实现门到门无障碍。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-emerald-400 font-bold text-sm">P1</span>
+                            <span class="text-emerald-300 text-xs font-medium">回应张力三</span>
+                        </div>
+                        <h4 class="font-semibold text-white mt-2 mb-3">代际共乘分区控制</h4>
+                        <p class="text-slate-300 text-sm">老人和儿童同乘时各座位独立适配。核心挑战不在"多屏分区"的技术实现，而在让每个乘客觉得"这是我的空间"而非"我被分配了一个角落"。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive: Q4 Identity Modes -->
+    <section id="deep-dive-q4" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="section-badge badge-collision">Deep Dive 04</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            <h2 class="serif text-4xl font-bold text-slate-900 mb-4">身份模式：座舱"懂你"的元数据层</h2>
+            <p class="text-lg text-slate-600 mb-12 max-w-3xl">身份模式切换的本质是"注意力预算"的重新分配。最可靠的识别信号是"可观察行为的突变"而非生物信号的绝对值。</p>
+
+            <!-- Six Identity Modes -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6">六种核心身份模式需求矩阵</h3>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 overflow-x-auto mb-12">
+                <table class="w-full text-sm min-w-[700px]">
+                    <thead>
+                        <tr class="bg-slate-900 text-white">
+                            <th class="text-left py-3 px-4 rounded-tl-lg">需求维度</th>
+                            <th class="text-center py-3 px-3">通勤者</th>
+                            <th class="text-center py-3 px-3">父母</th>
+                            <th class="text-center py-3 px-3">创作者</th>
+                            <th class="text-center py-3 px-3">社交者</th>
+                            <th class="text-center py-3 px-3">独处者</th>
+                            <th class="text-center py-3 px-3 rounded-tr-lg">健身者</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 font-medium text-slate-800">信息密度</td>
+                            <td class="py-3 px-3 text-center text-slate-600">中(精简)</td>
+                            <td class="py-3 px-3 text-center text-slate-600">中(偏后排)</td>
+                            <td class="py-3 px-3 text-center text-slate-600 bg-blue-50 font-semibold">高</td>
+                            <td class="py-3 px-3 text-center text-slate-600">中(共享)</td>
+                            <td class="py-3 px-3 text-center text-slate-600 bg-slate-100 font-semibold">低</td>
+                            <td class="py-3 px-3 text-center text-slate-600">低-中</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 font-medium text-slate-800">氛围调性</td>
+                            <td class="py-3 px-3 text-center text-slate-600">冷静高效</td>
+                            <td class="py-3 px-3 text-center text-slate-600">温暖安全</td>
+                            <td class="py-3 px-3 text-center text-slate-600">专业秩序</td>
+                            <td class="py-3 px-3 text-center text-slate-600">活跃开放</td>
+                            <td class="py-3 px-3 text-center text-slate-600">沉浸个性</td>
+                            <td class="py-3 px-3 text-center text-slate-600">活力激励</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 font-medium text-slate-800">交互偏好</td>
+                            <td class="py-3 px-3 text-center text-slate-600">语音优先</td>
+                            <td class="py-3 px-3 text-center text-slate-600">触控+语音</td>
+                            <td class="py-3 px-3 text-center text-slate-600 bg-blue-50">多设备互联</td>
+                            <td class="py-3 px-3 text-center text-slate-600">多人协作</td>
+                            <td class="py-3 px-3 text-center text-slate-600 bg-slate-100">极简/无</td>
+                            <td class="py-3 px-3 text-center text-slate-600">语音为主</td>
+                        </tr>
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 font-medium text-slate-800">隐私等级</td>
+                            <td class="py-3 px-3 text-center text-slate-600">中</td>
+                            <td class="py-3 px-3 text-center text-slate-600">高</td>
+                            <td class="py-3 px-3 text-center text-slate-600 bg-red-50 font-bold">极高</td>
+                            <td class="py-3 px-3 text-center text-slate-600">敏感</td>
+                            <td class="py-3 px-3 text-center text-slate-600 bg-red-50 font-bold">最高</td>
+                            <td class="py-3 px-3 text-center text-slate-600">中</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-medium text-slate-800">核心KPI</td>
+                            <td class="py-3 px-3 text-center text-slate-600">省时安全</td>
+                            <td class="py-3 px-3 text-center text-slate-600">全员舒适</td>
+                            <td class="py-3 px-3 text-center text-slate-600">生产力</td>
+                            <td class="py-3 px-3 text-center text-slate-600">互动乐趣</td>
+                            <td class="py-3 px-3 text-center text-slate-600">心理恢复</td>
+                            <td class="py-3 px-3 text-center text-slate-600">健康管理</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Key Insights -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="key-finding">
+                    <h4 class="font-bold text-slate-900 mb-2">洞察：注意力预算重新分配</h4>
+                    <p class="text-slate-700 text-sm">通勤者模式下注意力预算：驾驶安全70% + 有限信息获取30%。独处者模式下：驾驶安全50% + 沉浸体验50%。座舱适配的核心不是改变界面样式，而是<span class="data-highlight">重新分配用户的认知资源</span>。</p>
+                </div>
+                <div class="key-finding">
+                    <h4 class="font-bold text-slate-900 mb-2">洞察：概率混合状态</h4>
+                    <p class="text-slate-700 text-sm">最终输出不是单一模式标签，而是一个<span class="data-highlight">身份概率向量</span>。系统据此进行概率加权适配。CockpitGemini框架（Ren & Fan, 2024）提出多智能体系统——一个分析状态、一个生成方案、一个执行调节，最终由用户确认。</p>
+                </div>
+            </div>
+
+            <!-- Identification Signal Reliability -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6">识别信号可靠性评估</h3>
+            <div class="grid md:grid-cols-3 gap-4 mb-12">
+                <div class="bg-emerald-50 rounded-xl p-5 border border-emerald-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-3 h-3 bg-emerald-500 rounded-full"></span>
+                        <span class="font-semibold text-slate-800 text-sm">高可靠性（已成熟）</span>
+                    </div>
+                    <p class="text-xs text-slate-600">时间+日程同步（>90%）、蓝牙设备连接（工作耳机/儿童手表）、乘客检测（座椅重量+摄像头）</p>
+                </div>
+                <div class="bg-amber-50 rounded-xl p-5 border border-amber-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-3 h-3 bg-amber-500 rounded-full"></span>
+                        <span class="font-semibold text-slate-800 text-sm">中等可靠性（需优化）</span>
+                    </div>
+                    <p class="text-xs text-slate-600">位置轨迹（依赖高频学习，冷启动问题）、车辆状态（充电模式、座椅位置记忆）</p>
+                </div>
+                <div class="bg-slate-100 rounded-xl p-5 border border-slate-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-3 h-3 bg-slate-400 rounded-full"></span>
+                        <span class="font-semibold text-slate-800 text-sm">低可靠性（前沿探索）</span>
+                    </div>
+                    <p class="text-xs text-slate-600">天气/外部环境、驾驶行为模式、心率/皮电（更多反映情绪而非身份）</p>
+                </div>
+            </div>
+
+            <!-- Design Opportunities -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6">设计机会点</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P0</span>
+                            <span class="text-amber-300 text-sm">日程驱动身份预切换</span>
+                        </div>
+                        <p class="text-slate-300 text-sm">整合手机日历+导航历史+蓝牙设备三大信号构建"身份预判引擎"。最高价值、最快落地，技术成熟度高、用户教育成本低。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P0</span>
+                            <span class="text-amber-300 text-sm">信息架构动态重组</span>
+                        </div>
+                        <p class="text-slate-300 text-sm">不同身份模式下信息优先级和呈现方式有本质差异。不是"换主题色"，而是信息层级的重新编排。最大设计机会。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P1</span>
+                            <span class="text-amber-300 text-sm">模式间隐私沙箱</span>
+                        </div>
+                        <p class="text-slate-300 text-sm">为每种模式创建独立数据空间，工作邮件退出后自动隐藏。"我知道你的秘密，但我替你守护"成为极强品牌差异化。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P1</span>
+                            <span class="text-amber-300 text-sm">跨设备身份连续性</span>
+                        </div>
+                        <p class="text-slate-300 text-sm">手机结束工作会议(创作者模式)→上车进入通勤者模式→到健身房手表切换健身模式。跨设备情境无缝迁移。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive: Q5 Emotional Aesthetics -->
+    <section id="deep-dive-q5" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="section-badge badge-collision">Deep Dive 05</span>
+                <div class="h-px flex-1 bg-slate-200"></div>
+            </div>
+            <h2 class="serif text-4xl font-bold text-slate-900 mb-4">情感化空间美学：从"好看"到"情绪操作系统"</h2>
+            <p class="text-lg text-slate-600 mb-12 max-w-3xl">座舱正在从"静态内饰设计"进化为"实时情绪操作系统"。多感官协同对用户感知的影响显著大于单一感官。</p>
+
+            <!-- Key Insight: Why Emotional Design Matters -->
+            <div class="key-finding mb-12">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-2">核心转变：竞争从"硬件配置"转向"体验品质"</h4>
+                        <p class="text-slate-700 text-sm">自动驾驶释放了注意力，座舱从"驾驶工具的容器"变成"人待着的空间"。ADT Media 2026年报告指出："座舱正在通过沉浸式、情感化和生物学有效的设计概念，转变为<span class="data-highlight">个性化体验空间</span>。"用户评价标准已从"这车看起来多贵"转向"在这个空间里我感觉多好"。情绪设计重要的根本原因是：谁能让用户在上车后10分钟内从焦虑切换到平静，谁就拥有了真正的产品力。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Evidence -->
+            <div class="grid lg:grid-cols-2 gap-12 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-6">研究支持</h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-6 h-6 bg-violet-100 rounded-full flex items-center justify-center text-violet-600 text-xs font-bold">1</span>
+                                <span class="text-sm font-semibold text-slate-800">EEG脑电验证 — 蓝紫色偏好最高<a href="#ref-d10" data-title="arXiv 2022 - 60人EEG车内色彩实验" class="ref">D10</a></span>
+                            </div>
+                            <p class="text-sm text-slate-600">2022年arXiv发表60人EEG实验证实：车内氛围灯光显著提高大脑唤醒度并降低α波活动。蓝/紫色调在"偏好度"和"独特性"两个维度均最高，红色偏好度最低但"粗糙感"最强。直接指导：营造高级感用蓝紫色，制造警觉感用红色但用户不喜欢。</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-6 h-6 bg-violet-100 rounded-full flex items-center justify-center text-violet-600 text-xs font-bold">2</span>
+                                <span class="text-sm font-semibold text-slate-800">灯光+音乐协同 — 有效调节负面情绪</span>
+                            </div>
+                            <p class="text-sm text-slate-600">2026年2月系统研究证实：通过氛围灯光色温/颜色与音乐的协同调节，可以有效调节驾驶员的负面情绪。这不是"心情好一点"的主观感受，而是经过实验验证的从负面情绪中被调节出来的效果——<span class="data-highlight">情绪调节有实际安全价值</span>。</p>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-6 h-6 bg-violet-100 rounded-full flex items-center justify-center text-violet-600 text-xs font-bold">3</span>
+                                <span class="text-sm font-semibold text-slate-800">五感协同 — 影响显著大于单一感官<a href="#ref-d12" data-title="HARMAN Seat Sonic 个人声音区域" class="ref">D12</a></span>
+                            </div>
+                            <p class="text-sm text-slate-600">IEEE 2019年Kansei工程研究：多感官协同体验（视觉+触觉+听觉）对汽车内饰用户感知价值的影响<span class="data-highlight">显著大于单一感官</span>。HARMAN Seat Sonic已实现"个人声音区域"——不同座位乘客听不同音频。Norman三层次模型指出创新方向：把本能层/行为层/反思层从"静态"升级为"动态"。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Three Design Contradictions for Q5 -->
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">行业验证：三大设计矛盾</h3>
+                    <p class="text-sm text-slate-500 mb-6">竞品实践分布在这三个矛盾的探索光谱上——它们不是彼此替代的选项，而是情感化美学不同侧面的尝试。</p>
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-violet-50 to-white rounded-xl p-5 border border-violet-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-violet-600 bg-violet-100 px-2 py-0.5 rounded">矛盾一</span>
+                                <h4 class="font-semibold text-slate-800">主动情绪操控 vs 被动环境营造</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-2">BMW全景iDrive（CES 2025）"情景模式主题联动"将氛围灯、驾驶动态、空调、座椅整合为一个模式包，代表"主动编排用户情绪"路径；Mercedes EQ系列MBUX Hyperscreen + 柏林之声4D环绕声协同创造"数字与物理交融的奢华空间"，情绪表达服务于品牌"奢华"定位。但问题是：用户是否希望座舱<span class="data-highlight">"操控"自己的情绪</span>？</p>
+                            <p class="text-sm text-slate-500 italic">核心未解问题：情绪调节的边界在哪里？"响应我的生活"和"操控我的情绪"之间如何区分？</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="insight-tag">隐形触发</span>
+                                <span class="insight-tag">自然场景驱动</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-50 to-white rounded-xl p-5 border border-blue-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded">矛盾二</span>
+                                <h4 class="font-semibold text-slate-800">品牌化美学 vs 用户个性化情绪需求</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-2">Mercedes的"数字奢华"、BMW与曹斐合作的"数字艺术模式"代表"品牌定义美学"路径——每个用户获得的是同一种"奢华"。NIO ET7用可再生藤木传递"家的温暖"，理想L9用"冰箱彩电大沙发"复刻家的功能。但这些表达都是<span class="data-highlight">设计师预设的静态方案</span>，缺少对用户实时情绪状态的感知和响应。</p>
+                            <p class="text-sm text-slate-500 italic">核心未解问题：如何让美学表达从"品牌统一方案"进化为"实时适配个体"？</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="insight-tag">实时编排</span>
+                                <span class="insight-tag">自适应美学</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-emerald-50 to-white rounded-xl p-5 border border-emerald-100">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">矛盾三</span>
+                                <h4 class="font-semibold text-slate-800">视觉/听觉主导 vs 五感协同盲区</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-2">当前竞品几乎全部集中在视觉（氛围灯、屏幕）和听觉（音响系统）。NIO用材质传递温暖，Polestar用极简留白传递克制——都停留在"选择什么材质/颜色"的层面。但IEEE研究证实五感协同影响远大于单一感官，而<span class="data-highlight">触觉、嗅觉、本体感觉</span>三个维度几乎无人涉足。</p>
+                            <p class="text-sm text-slate-500 italic">核心未解问题：如何在视觉/听觉之外，激活触觉、嗅觉、本体感觉的情感设计蓝海？</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="insight-tag">触觉蓝海</span>
+                                <span class="insight-tag">嗅觉工程</span>
+                                <span class="insight-tag">声音景观</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Framework Bridge -->
+            <div class="bg-slate-50 rounded-2xl p-6 mb-12 border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 mb-3">设计框架推导</h3>
+                <p class="text-sm text-slate-600 mb-3">从三大矛盾中推导出一套完整的设计框架。核心逻辑：<strong>情感化美学不是"选择什么材质和灯光颜色"，而是构建一个"情绪编排系统"</strong>——它需要在主动性边界、个性化程度和感官覆盖三个维度上同时做出设计决策，且三个维度的决策必须一致。</p>
+                <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">隐形触发 → 让变化源自"自然场景"而非"系统主动"</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">实时编排 → 从"预设模式"进化为"AI驱动的动态生成"</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">五感协同 → 系统化管理全部感官维度的情感参数</span>
+                    <span class="text-slate-300">→</span>
+                    <span class="bg-white px-3 py-1 rounded-full border border-slate-200">用户可控 → 始终拥有"关闭"和"自定义"的权利</span>
+                </div>
+            </div>
+
+            <!-- Design Principles -->
+            <h3 class="text-xl font-bold text-slate-900 mb-6">设计原则</h3>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🌿</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">隐形触发原则</h4>
+                    <p class="text-sm text-slate-600">美学变化的触发逻辑应是隐形的——以自然场景为触发器：时间流逝、天气变化、驾驶状态、音乐节奏。让用户觉得"座舱在响应我的生活"而非"座舱在操控我的情绪"。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🎭</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">五感协同编排</h4>
+                    <p class="text-sm text-slate-600">系统化管理视觉/听觉/触觉/嗅觉/本体感觉。灯光色彩心理学（蓝光镇静/暖光放松/红光警觉）需与声音设计（频段/节奏/音量）协同编排，触觉和嗅觉作为蓝海维度重点突破。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">⏰</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">生物节律优先</h4>
+                    <p class="text-sm text-slate-600">基于昼夜节律（Circadian Rhythm）设计动态座舱——早晨冷白+清脆音唤醒，午后暖色减疲劳，夜间低色温+柔光放松。比任何主动情感介入都更自然、更不易引起反感。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🧤</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">动态触感体验</h4>
+                    <p class="text-sm text-slate-600">座椅面料在紧张时微微升温+微振动按摩，方向盘焦虑时从硬变柔，车门饰板夜间微弱暖光。触觉维度的情感化设计是视觉和听觉之外的蓝海。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🔊</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">声音景观工程</h4>
+                    <p class="text-sm text-slate-600">将车内声音从"音响系统"升级为"声音景观"——电机嗡鸣调校为安心白噪音，转向灯设计为愉悦提示音，关窗声学体验如"进入安静庇护所"。</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                    <div class="text-2xl mb-3">🎛️</div>
+                    <h4 class="font-semibold text-slate-800 mb-2">用户可控底线</h4>
+                    <p class="text-sm text-slate-600">定义一组"情绪预设"（专注/放松/活力/冥想），每个预设包含五感参数组合，支持用户自定义和AI自适应微调。用户始终拥有"关闭所有情感化功能"的权利。</p>
+                </div>
+            </div>
+
+            <!-- Design Opportunities with Tension Trace-back -->
+            <h3 class="text-xl font-bold text-slate-900 mb-2">设计机会点</h3>
+            <p class="text-sm text-slate-500 mb-6">以下是从三大矛盾"未解问题"中自然延伸的蓝海场景。</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P0</span>
+                            <span class="text-amber-300 text-sm font-medium">座舱情绪OS</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">回应矛盾一+二：</span>底层情绪感知引擎→中间五感参数编排层→顶层可扩展情绪模式库。从设计师预设的静态方案进化为AI驱动的实时编排系统——回答"谁来定义美学"的问题。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P0</span>
+                            <span class="text-amber-300 text-sm font-medium">生物节律同步美学</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">回应矛盾一的完美解：</span>基于Circadian Rhythm设计动态座舱——早晨冷白唤醒→午后暖色减疲劳→夜间低色温放松。以自然时间节律为触发器，彻底回避"操控情绪"的感知。Polestar"克制"哲学的技术实现路径。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P1</span>
+                            <span class="text-amber-300 text-sm font-medium">会呼吸的座舱</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">回应矛盾三（触觉蓝海）：</span>座椅面料紧张时升温+微振动，方向盘焦虑时触感变柔，车门饰板夜间微弱暖光。超越静态材质选择，进入"动态触感"体验设计。现有竞品几乎无人涉足。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P1</span>
+                            <span class="text-amber-300 text-sm font-medium">声音景观工程</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">回应矛盾三（听觉深化）：</span>电机嗡鸣→安心白噪音，转向灯→愉悦提示音，关窗→"进入安静庇护所"。HARMAN Seat Sonic"个人声音区域"为多人个性化声音景观提供技术基础。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P2</span>
+                            <span class="text-amber-300 text-sm font-medium">车内数字艺术</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">回应矛盾二（品牌美学突破）：</span>借鉴BMW与曹斐"数字艺术模式"，屏幕从功能界面拓展为情感表达载体——随心情、天气、时间变化的生成式数字艺术，让座舱成为"会变化的艺术空间"。</p>
+                    </div>
+                </div>
+                <div class="collision-card rounded-xl p-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-amber-400 font-bold">P2</span>
+                            <span class="text-amber-300 text-sm font-medium">情绪光谱环</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-1"><span class="text-slate-400 text-xs">回应矛盾一（隐形感知）：</span>围绕乘客的连续灯光带，将情绪状态转化为颜色渐变。柔和的光谱流动让用户在潜意识中感知到AI的关注——不表达情绪，但表达存在感。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unified Design Language: Context Flow -->
+    <section id="context-flow" class="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="section-badge badge-collision mb-4">Unified Framework</span>
+                <h2 class="serif text-4xl font-bold mb-6">统一设计语言：情境流动</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                    五个碰撞点的终极交汇点——座舱作为一个持续感知用户完整情境并自然变形的活体空间。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="text-center">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center border border-blue-400/30">
+                        <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">感知如呼吸</h3>
+                    <p class="text-slate-400 text-sm">传感器持续运作但绝不喧哗。DMS摄像头监控视线方向时，用户不会感到"被监视"，就像呼吸不需要刻意关注。感知不等于监控。</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center border border-amber-400/30">
+                        <svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">变形如流水</h3>
+                    <p class="text-slate-400 text-sm">界面不在几个预设主题间切换，而是在连续光谱上流动。从通勤者到职场人到家长到休闲者的转变是信息优先级、氛围色调的渐变。</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-violet-500/20 to-violet-600/20 flex items-center justify-center border border-violet-400/30">
+                        <svg class="w-10 h-10 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">边界如柔性膜</h3>
+                    <p class="text-slate-400 text-sm">隐私边界不是墙，而是可根据身份模式膨胀/收缩的柔性膜。商务模式收缩，独处模式膨胀，家庭模式分化为前后排独立空间。</p>
+                </div>
+            </div>
+
+            <!-- Three Phase Strategy -->
+            <h3 class="text-xl font-bold mb-8 text-center">三阶段产品策略</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-amber-400 text-sm font-bold mb-3">Phase 1 (1-2年)</div>
+                    <h4 class="text-lg font-bold mb-3">模式化座舱</h4>
+                    <p class="text-slate-400 text-sm">3-5种预设身份模式显式切换，日历+位置+蓝牙智能推荐。重点优化2-3个高频身份模式，建立用户认知和信任。</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-amber-400 text-sm font-bold mb-3">Phase 2 (2-4年)</div>
+                    <h4 class="text-lg font-bold mb-3">自适应座舱</h4>
+                    <p class="text-slate-400 text-sm">DMS生物信号隐式身份推测，多模态融合识别引擎，情绪子维度叠加。构建"身份模式图谱"OS架构，模式间平滑过渡。</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-amber-400 text-sm font-bold mb-3">Phase 3 (4年+)</div>
+                    <h4 class="text-lg font-bold mb-3">情境流座舱</h4>
+                    <p class="text-slate-400 text-sm">完整"情境流动"设计语言，空间美学与AI情感交互深度融合，全龄段自适应空间变形，跨设备情境无缝迁移。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="section-badge badge-collision mb-4">数据来源</span>
+                <div class="h-px flex-1 bg-slate-300"></div>
+            </div>
+            
+            <h2 class="serif text-3xl font-bold text-slate-900 mb-8">参考文献</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                <div id="ref-1" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://colombiaone.com/2025/07/25/china-demographic-decline-population-single-person-household/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[1] 单人户占比</a></div>
+                </div>
+                <div id="ref-2" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://business.cctv.com/2026/01/05/ARTIdmv2AWmVeRVodaZYLOvQ260105.shtml" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[2] 宠物市场3126亿元</a></div>
+                </div>
+                <div id="ref-3" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.xinhuanet.com/fortune/20260321/943f6293dbe14f918ef29a481d12a6d0/c.html" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[3] OPC突破1600万家</a></div>
+                </div>
+                <div id="ref-4" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.globaltimes.cn/page/202503/1331106.shtml" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[4] 搭子话题1300万次</a></div>
+                </div>
+                <div id="ref-5" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://growthbox.net/china-sleep-economy-2025-market-trends/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[5] 睡眠经济5717亿元</a></div>
+                </div>
+                <div id="ref-6" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.iimedia.cn/c400/106827.html" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[6] 情绪经济2.3万亿</a></div>
+                </div>
+                <div id="ref-7" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.nature.com/articles/s42949-025-00276-y" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[7] 139座收缩城市</a></div>
+                </div>
+                <div id="ref-8" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://masterofcode.com/blog/ai-agent-statistics" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[8] AI Agent CAGR 45.82%</a></div>
+                </div>
+                <div id="ref-9" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.idc.com/promo/arvr/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[9] XR出货量+44.4%</a></div>
+                </div>
+                <div id="ref-10" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.technologyreview.com/2025/04/01/1114009/brain-computer-interfaces-10-breakthrough-technologies-2025/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[10] 全球BCI仅71人使用</a></div>
+                </div>
+                <div id="ref-12" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://iotbusinessnews.com/2025/10/30/state-of-iot-2025-number-of-connected-iot-devices-growing-14-to-21-1-billion-globally/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[12] 211亿台IoT设备</a></div>
+                </div>
+                <div id="ref-13" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.iea.org/reports/renewables-2025/executive-summary" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[13] 可再生能源4600GW</a></div>
+                </div>
+                <div id="ref-14" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.globaltimes.cn/page/202508/1340067.shtml" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[14] 新能源车53.3%</a></div>
+                </div>
+                <div id="ref-15" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.prnewswire.com/news-releases/ponyai-targets-3-000-robotaxis-in-over-20-cities-in-2026-expects-dual-engines-to-drive-full-fledged-growth-302725955.html" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[15] Robotaxi收入+160%</a></div>
+                </div>
+                <div id="ref-16" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://english.www.gov.cn/news/202510/17/content_WS68f1feb5c6d00ca5f9a06ddb.html" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[16] 低空经济1.5万亿</a></div>
+                </div>
+                <div id="ref-17" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://jingdaily.com/posts/from-guochao-to-zixin-china-s-new-era-of-cultural-confidence" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[17] 博物馆播放1246亿次</a></div>
+                </div>
+                <div id="ref-18" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.asiatechlens.com/p/virtual-partners-real-markets-the" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[18] AI陪伴39亿→595亿</a></div>
+                </div>
+                <div id="ref-19" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://hubofchina.com/china-consumer-trends/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[19] Z世代50%+有副业</a></div>
+                </div>
+                <div id="ref-20" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://www.chinatradingdesk.com/post/inside-china-s-2025-youth-lifestyle-revolution-how-digital-natives-are-redefining-value-work-and" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[20] Z世代48.6%每日用AI</a></div>
+                </div>
+                <div id="ref-21" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://hrone.com/blog/the-chinese-gen-z-consumer-values-digital-habits-and-opportunities-2025-edition/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[21] 60%+Z世代身份认同</a></div>
+                </div>
+                <div id="ref-22" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://daxueconsulting.com/how-chinas-gen-alpha-is-reshaping-consumption/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[22] Alpha 97.3%互联网</a></div>
+                </div>
+                <div id="ref-23" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://news.cgtn.com/news/2025-01-17/Graphics-China-s-silver-economy-grows-amid-global-aging-trend-1Aee8kp0mHK/p.html" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[23] 银发经济15.8万亿</a></div>
+                </div>
+                <div id="ref-24" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://hubofchina.com/micro-ritual-premium-moments-new-consumer-language-china/" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[24] 57.1%情感满足付费</a></div>
+                </div>
+                <div id="ref-25" class="bg-white rounded-lg p-4 shadow-sm footnote-list ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1"><a href="https://wmo.int/publication-series/state-of-global-climate/state-of-global-climate-2025" target="_blank" rel="noopener" class="text-slate-800 hover:text-blue-600">[25] 55个气候灾害</a></div>
+                </div>
+                <!-- Deep Dive References -->
+                <div id="ref-d1" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D1] Nature 2026 - AI亲密关系研究</div>
+                    <a href="#" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Nature - AI Intimacy in Enclosed Spaces (2026)</a>
+                </div>
+                <div id="ref-d2" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D2] Springer 2024 - 情绪镜像驾驶实验</div>
+                    <a href="https://link.springer.com/article/10.1007/s10111-024-00756-8" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Springer - Emotion-matched in-vehicle assistants</a>
+                </div>
+                <div id="ref-d3" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D3] Princeton 2025 - AI情感依赖研究</div>
+                    <a href="https://dl.acm.org/doi/10.1145/3706598" target="_blank" rel="noopener" class="text-blue-600 hover:underline">ACM - Illusions of Intimacy (2025)</a>
+                </div>
+                <div id="ref-d4" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D4] Transportation Research Part A 2024</div>
+                    <a href="https://doi.org/10.1016/j.tra.2024" target="_blank" rel="noopener" class="text-blue-600 hover:underline">NDRTs in Autonomous Vehicles - User Preference Study</a>
+                </div>
+                <div id="ref-d5" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D5] Continental 2024全球调查</div>
+                    <a href="https://www.continental.com/en" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Continental Mobility Study 2024</a>
+                </div>
+                <div id="ref-d6" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D6] IEEE 2024 - 眼动研究(老年人HMI)</div>
+                    <a href="https://ieeexplore.ieee.org/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">IEEE Access - Eye Tracking on Automotive HMI for Elderly</a>
+                </div>
+                <div id="ref-d7" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D7] 欧盟JRC 2025 - 包容性自动驾驶</div>
+                    <a href="https://ec.europa.eu/jrc/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">EC JRC - Inclusive Autonomous Mobility (2025)</a>
+                </div>
+                <div id="ref-d8" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D8] CockpitGemini多智能体框架</div>
+                    <a href="https://arxiv.org/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Ren & Fan - CockpitGemini Multi-Agent Framework (2024)</a>
+                </div>
+                <div id="ref-d9" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D9] RCA参与式包容性设计</div>
+                    <a href="https://www.rca.ac.uk/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">RCA Inclusive Design Research (2020-2024)</a>
+                </div>
+                <div id="ref-d10" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D10] arXiv 2022 - EEG车内色彩研究</div>
+                    <a href="https://arxiv.org/abs/2209.10761" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Affective responses to chromatic ambient light (60 subjects)</a>
+                </div>
+                <div id="ref-d11" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D11] Deloitte - Reinventing AV Interiors</div>
+                    <a href="https://www.deloitte.com/us/en/insights/industry/automotive/reinventing-autonomous-vehicle-interiors.html" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Deloitte - Forget the Wheel</a>
+                </div>
+                <div id="ref-d12" class="bg-white rounded-lg p-4 shadow-sm footnote-list border-l-4 border-amber-400 ref-target scroll-mt-24">
+                    <div class="font-semibold text-slate-800 mb-1">[D12] HARMAN Seat Sonic</div>
+                    <a href="https://www.harman.com/innovations/seat-sonic" target="_blank" rel="noopener" class="text-blue-600 hover:underline">HARMAN - Personal Sound Zone Technology</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">未</span>
+                    </div>
+                    <span class="font-semibold text-slate-300">未来趋势研究</span>
+                </div>
+                <div class="text-sm">
+                    基于80+中英文数据源 | 研究时间：2026年3-4月
+                </div>
+                <div class="text-sm">
+                    数据来源：微信公众号、学术期刊、行业白皮书、新闻报道
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Navigation Active State
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Charts
+        Chart.defaults.font.family = "'Noto Sans SC', sans-serif";
+        Chart.defaults.color = '#64748b';
+
+        // Social Chart - Family Structure
+        const socialCtx = document.getElementById('socialChart').getContext('2d');
+        new Chart(socialCtx, {
+            type: 'line',
+            data: {
+                labels: ['2010', '2015', '2020', '2025', '2030', '2035', '2040'],
+                datasets: [{
+                    label: '单人户占比 (%)',
+                    data: [12, 16, 20, 25, 27, 29, 30],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '单人户家庭占比趋势预测',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 35
+                    }
+                }
+            }
+        });
+
+        // Tech Chart - AI Agent Market
+        const techCtx = document.getElementById('techChart').getContext('2d');
+        new Chart(techCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034'],
+                datasets: [{
+                    label: '市场规模 (亿美元)',
+                    data: [79, 115, 168, 245, 357, 520, 758, 1105, 1610, 2360],
+                    backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'AI Agent市场规模预测 (CAGR 45.82%)',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Culture Chart - Guochao Data
+        const cultureCtx = document.getElementById('cultureChart').getContext('2d');
+        new Chart(cultureCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['博物馆内容播放 (亿次)', '国潮玩具增长 (倍)', 'Z世代身份认同 (%)'],
+                datasets: [{
+                    data: [1246, 50, 60],
+                    backgroundColor: [
+                        'rgba(139, 92, 246, 0.8)',
+                        'rgba(245, 158, 11, 0.8)',
+                        'rgba(59, 130, 246, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '国潮文化关键指标',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
